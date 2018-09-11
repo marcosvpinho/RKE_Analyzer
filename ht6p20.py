@@ -1,5 +1,6 @@
 """
 Embedded Python Blocks:
+
 Each this file is saved, GRC will instantiate the first class it finds to get
 ports and parameters of your block. The arguments to __init__  will be the
 parameters. All of them are required to have default values!
@@ -11,7 +12,7 @@ class blk(gr.basic_block):
     def __init__(self, min_agreements=3, debug=True):  # only default arguments here
         gr.basic_block.__init__(
             self,
-            name='Decoder for HT12E',
+            name='Decoder for HT6P20',
             in_sig=[np.int8],
             out_sig=[np.int8]
         )
@@ -37,48 +38,44 @@ class blk(gr.basic_block):
         in_stream = in_stream[i0:]
         self.consume(0, i0)
 
-        if len(in_stream) < 85 or len(output_items[0]) < 28:
+        if len(in_stream) < 100 or len(output_items[0]) < 29:
             return 0
 
         # At this point, the first entry should necessarily be 1, and
         # we should have at least 100 input data items.
-        print(in_stream)
+
         in_stream = in_stream[1:]
         self.consume(0, 1)
-        flag = 0
+        #print(in_stream)
         buffer_ = []
-        
+        flag=0
         while len(in_stream) >= 3 and len(buffer_) < 28:
             seq3, in_stream = in_stream[:3], in_stream[3:]
             self.consume(0, 3)
-            if len(buffer_)<25:  
+            if len(buffer_)<24:  
                 if np.all(seq3 == self.bit0):
                     buffer_.append(0)
-                    #print("bit 0")
                 elif np.all(seq3 == self.bit1):
                     buffer_.append(1)
-                    #print("bit 1")
                 else:
-                    #print("ERRRRRRRRRRRRRRRRRRRROU")
                     self.consume(0, 3 * (15 - len(buffer_)))
                     return 0
             else:
                 if(flag==0):
                     if np.all(seq3 == self.bit0):
-                        buffer_.append(0)
-                        print("anti 0")
-                        flag = (flag != 1)
+                        buffer_.append(0)           
+                        flag = (flag != 1)   
                     else:
+                        self.consume(0, 3 * (15 - len(buffer_)))
                         return 0
                 elif(flag==1):
                     if np.all(seq3 == self.bit1):
                         buffer_.append(1)
-                        print("anti 1")
-                        flag = (flag != 1)
+                        flag = (flag != 1) 
                     else:
+                        self.consume(0, 3 * (15 - len(buffer_)))
                         return 0    
-                    
-                
+
         if buffer_ == self.buffer_:
             self.agreements += 1
         else:
@@ -86,10 +83,10 @@ class blk(gr.basic_block):
             self.agreements = 0
 
         if self.agreements > self.min_agreements:
-            output_items[0][:29] = np.array(buffer_) + ord('0')
-            output_items[0][29] = ord('\n')
+            output_items[0][:28] = np.array(buffer_) + ord('0')
+            output_items[0][28] = ord('\n')
             if self.debug:
                 print(self.agreements, buffer_)
-            return 25
+            return 29
         else:
             return 0

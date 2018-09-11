@@ -9,7 +9,7 @@ import numpy as np
 from gnuradio import gr
 
 class blk(gr.basic_block):
-    def __init__(self, min_agreements=3, debug=True):  # only default arguments here
+    def __init__(self, min_agreements=2, debug=True):  # only default arguments here
         gr.basic_block.__init__(
             self,
             name="ht6026",
@@ -18,8 +18,8 @@ class blk(gr.basic_block):
         self.min_agreements = min_agreements
         self.debug = debug
 
-        self.bit0 = np.array([0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1])
-        self.bit1 = np.array([0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0])
+        self.bit1 = np.array([0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1])
+        self.bit0 = np.array([0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0])
         self.bit2 = np.array([0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0])
 
         self.agreements = 0
@@ -34,14 +34,15 @@ class blk(gr.basic_block):
             i0 = nonzeros[0]
         # i0 = first nonzero input index.
 
-        in_stream = in_stream[i0-1:]
+        in_stream = in_stream[i0:]
+        self.consume(0, i0)
+        bit0= np.array([0])
+        in_stream =  np.concatenate((bit0,in_stream),axis=None)
         
-        self.consume(0, i0-1)
 
-        if len(in_stream) < 432 or len(output_items[0]) < 10:
+        if len(in_stream) < 352 or len(output_items[0]) < 10:
             return 0
             
- 
         # At this point, the first entry should necessarily be 1, and
         # we should have at least 100 input data items.
 
@@ -49,23 +50,21 @@ class blk(gr.basic_block):
         #self.consume(0, 1)
         
         buffer_ = []
-        while len(in_stream) >= 16 and len(buffer_) < 9:
-            
-            print(in_stream)
+        while len(in_stream) >= 16 and len(buffer_) < 9:        
+
             seq3, in_stream = in_stream[:16], in_stream[16:]
             self.consume(0, 16)
-            
             if np.all(seq3 == self.bit0):
                 buffer_.append(0)
-                print("1")
+                
             elif np.all(seq3 == self.bit1):
                 buffer_.append(1)
-                print("0")
+                
             elif np.all(seq3 == self.bit2):
                 buffer_.append(2)    
-                print("Z")
+                
             else:
-                self.consume(0, 16)
+                self.consume(0, 16 * (9 - len(buffer_)))
                 return 0
 
         if buffer_ == self.buffer_:
