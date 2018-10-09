@@ -6,7 +6,7 @@
     <key>options</key>
     <param>
       <key>author</key>
-      <value>Roberto W. Nobrega</value>
+      <value>Marcos</value>
     </param>
     <param>
       <key>window_size</key>
@@ -82,7 +82,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>HT12E decoder</value>
+      <value>RKE Analyzer</value>
     </param>
     <param>
       <key>placement</key>
@@ -124,7 +124,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>433.92e6</value>
+      <value>292e6</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -132,11 +132,11 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(592, 12)</value>
+      <value>(584, 12)</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value></value>
+      <value>0,0,1,1</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -160,7 +160,7 @@
     </param>
     <param>
       <key>start</key>
-      <value>433e6</value>
+      <value>292e6</value>
     </param>
     <param>
       <key>step</key>
@@ -168,7 +168,7 @@
     </param>
     <param>
       <key>stop</key>
-      <value>434e6</value>
+      <value>433.92e6</value>
     </param>
     <param>
       <key>rangeType</key>
@@ -203,7 +203,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(824, 708)</value>
+      <value>(1056, 660)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -277,6 +277,112 @@
     </param>
   </block>
   <block>
+    <key>variable_function_probe</key>
+    <param>
+      <key>block_id</key>
+      <value>probe</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>function_args</key>
+      <value></value>
+    </param>
+    <param>
+      <key>function_name</key>
+      <value>level</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(600, 660)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>sps</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>45</value>
+    </param>
+    <param>
+      <key>poll_rate</key>
+      <value>10</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_range</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>45</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(104, 652)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>sps</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value></value>
+    </param>
+    <param>
+      <key>min_len</key>
+      <value>200</value>
+    </param>
+    <param>
+      <key>orient</key>
+      <value>Qt.Horizontal</value>
+    </param>
+    <param>
+      <key>start</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>step</key>
+      <value>3</value>
+    </param>
+    <param>
+      <key>stop</key>
+      <value>90</value>
+    </param>
+    <param>
+      <key>rangeType</key>
+      <value>int</value>
+    </param>
+    <param>
+      <key>widget</key>
+      <value>counter_slider</value>
+    </param>
+  </block>
+  <block>
     <key>variable</key>
     <param>
       <key>comment</key>
@@ -284,7 +390,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -315,7 +421,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(744, 12)</value>
+      <value>(712, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -342,7 +448,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>formatter</key>
@@ -350,7 +456,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1080, 908)</value>
+      <value>(736, 660)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -371,6 +477,49 @@
     <param>
       <key>type</key>
       <value>real</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_label</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>sps</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>formatter</key>
+      <value>None</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(888, 660)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>variable_qtgui_label_0_0</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value></value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>int</value>
     </param>
   </block>
   <block>
@@ -397,7 +546,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(240, 444)</value>
+      <value>(256, 428)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -406,6 +555,57 @@
     <param>
       <key>id</key>
       <value>blocks_add_const_vxx_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_add_const_vxx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>const</key>
+      <value>-0.5</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(624, 140)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_add_const_vxx_0_0</value>
     </param>
     <param>
       <key>type</key>
@@ -444,7 +644,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(616, 264)</value>
+      <value>(592, 328)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -487,11 +687,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>file</key>
-      <value>/home/marcospinho/Documentos/TCC/RKE_Analyzer/ht12e_samp_freq_2.88M.raw.dat</value>
+      <value>/home/marcospinho/Documentos/TCC/RKE_Analyzer/ht6026_samp_freq_1.8M.raw</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -527,6 +727,100 @@
     </param>
   </block>
   <block>
+    <key>blocks_float_to_int</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(744, 580)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_float_to_int_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>scale</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_null_sink</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bus_conns</key>
+      <value>[[0,],]</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1176, 488)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_null_sink_0_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_null_sink</key>
     <param>
       <key>alias</key>
@@ -550,7 +844,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1208, 592)</value>
+      <value>(752, 480)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -558,11 +852,207 @@
     </param>
     <param>
       <key>id</key>
-      <value>blocks_null_sink_0</value>
+      <value>blocks_null_sink_0_0_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_null_sink</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bus_conns</key>
+      <value>[[0,],]</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(744, 528)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_null_sink_0_0_0_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_null_sink</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bus_conns</key>
+      <value>[[0,],]</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1160, 224)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_null_sink_0_1</value>
     </param>
     <param>
       <key>type</key>
       <value>byte</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_null_sink</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bus_conns</key>
+      <value>[[0,],]</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1000, 144)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_null_sink_1</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_tag_debug</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>display</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(264, 572)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_tag_debug_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>filter</key>
+      <value>""</value>
+    </param>
+    <param>
+      <key>name</key>
+      <value></value>
     </param>
     <param>
       <key>num_inputs</key>
@@ -589,11 +1079,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(192, 148)</value>
+      <value>(192, 108)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -617,7 +1107,7 @@
     </param>
     <param>
       <key>samples_per_second</key>
-      <value>sdr_rate</value>
+      <value>samp_rate</value>
     </param>
     <param>
       <key>type</key>
@@ -644,11 +1134,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(776, 520)</value>
+      <value>(752, 424)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -828,7 +1318,7 @@ class divide(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(824, 264)</value>
+      <value>(784, 264)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -847,7 +1337,7 @@ class divide(gr.sync_block):
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('ht6026', 'blk', [('min_agreements', '2'), ('debug', 'True')], [('0', 'byte')], [('0', 'byte')], '')</value>
+      <value>('ht6026', 'blk', [('min_agreements', '2'), ('debug', 'True')], [('0', 'byte', 1)], [('0', 'byte', 1)], '', ['debug', 'min_agreements'])</value>
     </param>
     <param>
       <key>_source_code</key>
@@ -879,7 +1369,8 @@ class blk(gr.basic_block):
         self.buffer_ = []  
 
     def general_work(self, input_items, output_items):
-	
+        size = np.shape(input_items)[0]
+        in_stream = np.zeros((size),dtype=np.int8)	
         in_stream = input_items[0][:]
         nonzeros = np.flatnonzero(in_stream)
         if len(nonzeros) == 0:
@@ -890,8 +1381,8 @@ class blk(gr.basic_block):
 
         in_stream = in_stream[i0:]
         self.consume(0, i0)
-        bit0= np.array([0])
-        in_stream =  np.concatenate((bit0,in_stream),axis=None)
+        bit= np.array([0])
+        in_stream =  np.concatenate((bit,in_stream),axis=None)
         
 
 
@@ -919,7 +1410,8 @@ class blk(gr.basic_block):
                 buffer_.append(2)    
                 
             else:
-                self.consume(0, 16 * (9 - len(buffer_)))
+                print("errou")
+                self.consume(0, 16 * (10 - len(buffer_)))
                 return 0
 
         if buffer_ == self.buffer_:
@@ -933,9 +1425,9 @@ class blk(gr.basic_block):
             output_items[0][9] = ord('\n')
             if self.debug:
                 print(self.agreements, buffer_)
-            return 10
+            return len(output_items)
         else:
-            return 0
+            return len(output_items)
 </value>
     </param>
     <param>
@@ -948,11 +1440,11 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1008, 580)</value>
+      <value>(976, 476)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -964,7 +1456,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>min_agreements</key>
-      <value>2</value>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -975,7 +1467,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('Decoder for HT6P20', 'blk', [('min_agreements', '3'), ('debug', 'True')], [('0', 'byte')], [('0', 'byte')], '')</value>
+      <value>('Decoder for HT6P20', 'blk', [('min_agreements', '3'), ('debug', 'True')], [('0', 'byte', 1)], [('0', 'byte', 1)], '', ['debug', 'min_agreements'])</value>
     </param>
     <param>
       <key>_source_code</key>
@@ -1008,10 +1500,12 @@ class blk(gr.basic_block):
 
     def general_work(self, input_items, output_items):
         in_stream = input_items[0][:]
+        size = np.shape(in_stream)[0]
 
         nonzeros = np.flatnonzero(in_stream)
         if len(nonzeros) == 0:
             i0 = len(in_stream)
+            
         else:
             i0 = nonzeros[0]
         # i0 = first nonzero input index.
@@ -1039,23 +1533,23 @@ class blk(gr.basic_block):
                 elif np.all(seq3 == self.bit1):
                     buffer_.append(1)
                 else:
-                    self.consume(0, 3 * (15 - len(buffer_)))
-                    return 0
+                    self.consume(0,size - (3* len(buffer_)))
+                    return len(output_items[0])
             else:
                 if(flag==0):
                     if np.all(seq3 == self.bit0):
                         buffer_.append(0)           
                         flag = (flag != 1)   
                     else:
-                        self.consume(0, 3 * (15 - len(buffer_)))
-                        return 0
+                        self.consume(0,size - (3* len(buffer_)))
+                        return len(output_items[0])
                 elif(flag==1):
                     if np.all(seq3 == self.bit1):
                         buffer_.append(1)
                         flag = (flag != 1) 
                     else:
-                        self.consume(0, 3 * (15 - len(buffer_)))
-                        return 0    
+                        self.consume(0,size - (3* len(buffer_)))
+                        return len(output_items[0]) 
 
         if buffer_ == self.buffer_:
             self.agreements += 1
@@ -1068,7 +1562,7 @@ class blk(gr.basic_block):
             output_items[0][28] = ord('\n')
             if self.debug:
                 print(self.agreements, buffer_)
-            return 29
+            return len(output_items[0])
         else:
             return 0
 </value>
@@ -1087,7 +1581,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1000, 508)</value>
+      <value>(976, 412)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1100,6 +1594,310 @@ class blk(gr.basic_block):
     <param>
       <key>min_agreements</key>
       <value>3</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('crossing', 'crossing', [], [('0', 'float', 1)], [('0', 'float', 1)], '', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>"""
+Embedded Python Blocks:
+
+Each this file is saved, GRC will instantiate the first class it finds to get
+ports and parameters of your block. The arguments to __init__  will be the
+parameters. All of them are required to have default values!
+"""
+from __future__ import division
+import numpy as np
+from gnuradio import gr
+
+
+class crossing(gr.basic_block):
+
+
+    def __init__(self):  # only default arguments here
+        gr.basic_block.__init__(
+            self,
+            name='crossing',
+            in_sig=[np.float32],
+            out_sig=[np.float32]
+        )
+        self.count = 0
+        self.fs = 180000
+        
+
+    def general_work(self, input_items, output_items):
+        
+        in_stream = input_items[0][:]
+        #print(in_stream)
+        zero_crossings = np.where(np.diff(np.signbit(input_items)))
+        size = len(zero_crossings[1])
+        zeros_ = []
+        for x in range(0,size-2):
+        	zeros_.append(zero_crossings[1][x+1] - zero_crossings[1][x])
+        if (len(zeros_)):
+            minimo = min(zeros_)
+            valor = 1/(minimo/self.fs)
+            print(valor)
+        i0 = len(in_stream)
+        self.consume(0, i0)
+        #output_items[0][:] = np.zeros((size),dtype=np.float32)
+        return len(output_items[0])
+
+        
+
+
+
+
+
+
+
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(776, 144)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_2</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('ht6026', 'decodicador', [('debug', 'True')], [('0', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>#!/usr/bin/python
+# -*- coding: latin-1 -*-
+import os, sys
+import numpy as np
+from gnuradio import gr
+
+class decodicador(gr.basic_block):
+    def __init__(self, debug=True):  # only default arguments here
+        gr.basic_block.__init__(
+            self,
+            name="ht6026",
+            in_sig=[np.int8],
+            out_sig=[np.int8])
+        
+        self.syn  = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])  
+        self.bit1 = np.array([0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1])
+        self.bit0 = np.array([0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0])
+        self.bit2 = np.array([0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0])
+
+
+        
+
+    def general_work(self, input_items, output_items):
+        in_stream = input_items[0][:]
+        if len(in_stream) &lt; 16:
+            return 0
+        buffer_ = []
+        
+        while(True):
+	        # sincronização ht6026
+	        if(len(in_stream) &gt;= 16):   
+	        	seq3 = in_stream[:16]
+		        if np.all(seq3 == self.syn):
+		            buffer_.append(5)
+		            output_items[0][:1] = np.array(buffer_)
+		            self.consume(0,16)
+		            print("sync")
+		            return len(output_items[0])
+
+	        #### sincronização syncht6p20
+	        if(len(in_stream) &gt;= 16):   
+		        seq3 = in_stream[:16]
+		        if np.all(seq3 == self.bit1):
+		            buffer_.append(1)
+		            output_items[0][:1] = np.array(buffer_)
+		            self.consume(0,16)
+		            print("ht6026-1")
+		            return len(output_items[0])
+
+	        if(len(in_stream) &gt;= 16):
+		        seq3 = in_stream[:16]
+		        if np.all(seq3 == self.bit2):
+		            buffer_.append(2)
+		            output_items[0][:1] = np.array(buffer_)
+		            self.consume(0,16)
+		            print("ht6026-2")
+		            return len(output_items[0])
+
+			if(len(in_stream) &gt;= 16):
+				seq3 = in_stream[:16]
+				if np.all(seq3 == self.bit0):
+					buffer_.append(0)
+					output_items[0][:1] = np.array(buffer_)
+					self.consume(0,16)
+					print("ht6026-0")
+
+			else:
+				print(size(in_stream))
+				in_stream = in_stream[1:]
+				self.consume(0, len(in_stream))
+				return 0
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>debug</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(976, 292)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_3</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('ht6p20', 'blk_cod', [('debug', 'True')], [('0', 'byte', 1), ('1', 'byte', 1)], [('0', 'byte', 1), ('1', 'byte', 1)], '', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk_cod(gr.basic_block):
+    def __init__(self, debug=True):  # only default arguments here
+        gr.basic_block.__init__(
+            self,
+            name="ht6p20",
+            in_sig=[np.int8],
+            out_sig=[np.int8])
+
+        self.bit0 =  np.array([0, 1, 1])
+        self.bit1 =  np.array([0, 0, 1])
+        self.sync =  np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
+        self.zeros = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        self.pilot = 0
+
+    def general_work(self, input_items, output_items):
+        in_stream = input_items[0][:]
+        if len(in_stream) &lt; 13:
+            return 0
+        
+        buffer_ = []     
+
+        if(self.pilot == 0 ):
+            seq3, in_stream = in_stream[:37], in_stream[37:]
+        else:
+            seq3, in_stream = in_stream[:3], in_stream[3:]
+
+        while(1):
+
+            if np.all(seq3 == self.sync):
+                buffer_.append(5)
+                output_items[0][:1] = np.array(buffer_)
+                self.consume(0,37)
+                print(self.pilot)
+                print("sync")
+                
+                return len(output_items[0])
+        
+            elif np.all(seq3 == self.zeros):
+                #buffer_.append(5)
+                #output_items[0][:1] = np.array(buffer_)
+                self.consume(0,37)
+                self.pilot = 0
+                return 0
+
+            else:
+                if np.all(seq3 == self.bit0):
+                    buffer_.append(0)
+                    output_items[0][:1] = np.array(buffer_)
+                    self.consume(0,3)
+                    print(self.pilot)
+                    return len(output_items[0])
+                    
+                elif np.all(seq3 == self.bit1):
+                    buffer_.append(1)
+                    output_items[0][:1] = np.array(buffer_)
+                    self.consume(0,3)
+                    print(self.pilot)
+                    return len(output_items[0])
+                else:
+                    in_stream = in_stream[1:]
+                    seq3= in_stream[:3]
+                    self.consume(0, 1)
+                    self.pilot = 0
+                    if (len(in_stream))&lt;3:
+                        return 0
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>debug</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(976, 204)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_3_0</value>
     </param>
   </block>
   <block>
@@ -1126,7 +1924,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 508)</value>
+      <value>(64, 524)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1181,7 +1979,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(376, 196)</value>
+      <value>(376, 252)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1209,7 +2007,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>type</key>
-      <value>ccc</value>
+      <value>ccf</value>
     </param>
   </block>
   <block>
@@ -1315,7 +2113,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1008, 428)</value>
+      <value>(976, 340)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1362,15 +2160,7 @@ class blk(gr.basic_block):
     </param>
   </block>
   <block>
-    <key>qtgui_time_sink_x</key>
-    <param>
-      <key>autoscale</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>axislabels</key>
-      <value>True</value>
-    </param>
+    <key>blocks_probe_signal_x</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -1380,367 +2170,55 @@ class blk(gr.basic_block):
       <value></value>
     </param>
     <param>
-      <key>ctrlpanel</key>
-      <value>True</value>
-    </param>
-    <param>
       <key>affinity</key>
       <value></value>
     </param>
     <param>
-      <key>entags</key>
+      <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
       <key>_coordinate</key>
-      <value>(336, 732)</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value></value>
+      <value>(872, 584)</value>
     </param>
     <param>
       <key>_rotation</key>
       <value>0</value>
     </param>
     <param>
-      <key>grid</key>
-      <value>False</value>
-    </param>
-    <param>
       <key>id</key>
-      <value>qtgui_time_sink_x_0</value>
-    </param>
-    <param>
-      <key>legend</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>alpha1</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color1</key>
-      <value>"blue"</value>
-    </param>
-    <param>
-      <key>label1</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker1</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha10</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color10</key>
-      <value>"blue"</value>
-    </param>
-    <param>
-      <key>label10</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker10</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style10</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width10</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha2</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color2</key>
-      <value>"red"</value>
-    </param>
-    <param>
-      <key>label2</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker2</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style2</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width2</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha3</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color3</key>
-      <value>"green"</value>
-    </param>
-    <param>
-      <key>label3</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker3</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style3</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width3</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha4</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color4</key>
-      <value>"black"</value>
-    </param>
-    <param>
-      <key>label4</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker4</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style4</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width4</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha5</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color5</key>
-      <value>"cyan"</value>
-    </param>
-    <param>
-      <key>label5</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker5</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style5</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width5</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha6</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color6</key>
-      <value>"magenta"</value>
-    </param>
-    <param>
-      <key>label6</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker6</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style6</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width6</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha7</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color7</key>
-      <value>"yellow"</value>
-    </param>
-    <param>
-      <key>label7</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker7</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style7</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width7</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha8</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color8</key>
-      <value>"dark red"</value>
-    </param>
-    <param>
-      <key>label8</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker8</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style8</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width8</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha9</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color9</key>
-      <value>"dark green"</value>
-    </param>
-    <param>
-      <key>label9</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker9</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style9</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width9</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>name</key>
-      <value>""</value>
-    </param>
-    <param>
-      <key>nconnections</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>size</key>
-      <value>1024</value>
-    </param>
-    <param>
-      <key>srate</key>
-      <value>samp_rate</value>
-    </param>
-    <param>
-      <key>stemplot</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>tr_chan</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>tr_delay</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>tr_level</key>
-      <value>0.8</value>
-    </param>
-    <param>
-      <key>tr_mode</key>
-      <value>qtgui.TRIG_MODE_AUTO</value>
-    </param>
-    <param>
-      <key>tr_slope</key>
-      <value>qtgui.TRIG_SLOPE_POS</value>
-    </param>
-    <param>
-      <key>tr_tag</key>
-      <value>""</value>
+      <value>probe</value>
     </param>
     <param>
       <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>update_time</key>
-      <value>0.10</value>
-    </param>
-    <param>
-      <key>ylabel</key>
-      <value>Amplitude</value>
-    </param>
-    <param>
-      <key>yunit</key>
-      <value>""</value>
-    </param>
-    <param>
-      <key>ymax</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>ymin</key>
-      <value>-1</value>
+      <value>int</value>
     </param>
   </block>
   <block>
-    <key>qtgui_time_sink_x</key>
+    <key>qtgui_freq_sink_x</key>
     <param>
       <key>autoscale</key>
       <value>False</value>
+    </param>
+    <param>
+      <key>average</key>
+      <value>1.0</value>
     </param>
     <param>
       <key>axislabels</key>
       <value>True</value>
     </param>
     <param>
+      <key>bw</key>
+      <value>sdr_rate</value>
+    </param>
+    <param>
       <key>alias</key>
       <value></value>
+    </param>
+    <param>
+      <key>fc</key>
+      <value>0</value>
     </param>
     <param>
       <key>comment</key>
@@ -1748,27 +2226,27 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>ctrlpanel</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>affinity</key>
       <value></value>
     </param>
     <param>
-      <key>entags</key>
-      <value>True</value>
-    </param>
-    <param>
       <key>_enabled</key>
       <value>1</value>
     </param>
     <param>
+      <key>fftsize</key>
+      <value>1024</value>
+    </param>
+    <param>
       <key>_coordinate</key>
-      <value>(616, 132)</value>
+      <value>(384, 140)</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value></value>
+      <value>tab@0</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1780,7 +2258,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>id</key>
-      <value>qtgui_time_sink_x_0_0</value>
+      <value>qtgui_freq_sink_x_0</value>
     </param>
     <param>
       <key>legend</key>
@@ -1799,14 +2277,6 @@ class blk(gr.basic_block):
       <value></value>
     </param>
     <param>
-      <key>marker1</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style1</key>
-      <value>1</value>
-    </param>
-    <param>
       <key>width1</key>
       <value>1</value>
     </param>
@@ -1816,19 +2286,11 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>color10</key>
-      <value>"blue"</value>
+      <value>"dark blue"</value>
     </param>
     <param>
       <key>label10</key>
       <value></value>
-    </param>
-    <param>
-      <key>marker10</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style10</key>
-      <value>1</value>
     </param>
     <param>
       <key>width10</key>
@@ -1847,14 +2309,6 @@ class blk(gr.basic_block):
       <value></value>
     </param>
     <param>
-      <key>marker2</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style2</key>
-      <value>1</value>
-    </param>
-    <param>
       <key>width2</key>
       <value>1</value>
     </param>
@@ -1869,14 +2323,6 @@ class blk(gr.basic_block):
     <param>
       <key>label3</key>
       <value></value>
-    </param>
-    <param>
-      <key>marker3</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style3</key>
-      <value>1</value>
     </param>
     <param>
       <key>width3</key>
@@ -1895,14 +2341,6 @@ class blk(gr.basic_block):
       <value></value>
     </param>
     <param>
-      <key>marker4</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style4</key>
-      <value>1</value>
-    </param>
-    <param>
       <key>width4</key>
       <value>1</value>
     </param>
@@ -1917,14 +2355,6 @@ class blk(gr.basic_block):
     <param>
       <key>label5</key>
       <value></value>
-    </param>
-    <param>
-      <key>marker5</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style5</key>
-      <value>1</value>
     </param>
     <param>
       <key>width5</key>
@@ -1943,14 +2373,6 @@ class blk(gr.basic_block):
       <value></value>
     </param>
     <param>
-      <key>marker6</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style6</key>
-      <value>1</value>
-    </param>
-    <param>
       <key>width6</key>
       <value>1</value>
     </param>
@@ -1965,14 +2387,6 @@ class blk(gr.basic_block):
     <param>
       <key>label7</key>
       <value></value>
-    </param>
-    <param>
-      <key>marker7</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style7</key>
-      <value>1</value>
     </param>
     <param>
       <key>width7</key>
@@ -1991,14 +2405,6 @@ class blk(gr.basic_block):
       <value></value>
     </param>
     <param>
-      <key>marker8</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style8</key>
-      <value>1</value>
-    </param>
-    <param>
       <key>width8</key>
       <value>1</value>
     </param>
@@ -2015,16 +2421,16 @@ class blk(gr.basic_block):
       <value></value>
     </param>
     <param>
-      <key>marker9</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style9</key>
-      <value>1</value>
-    </param>
-    <param>
       <key>width9</key>
       <value>1</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
     </param>
     <param>
       <key>name</key>
@@ -2035,23 +2441,15 @@ class blk(gr.basic_block):
       <value>1</value>
     </param>
     <param>
-      <key>size</key>
-      <value>1024</value>
+      <key>showports</key>
+      <value>True</value>
     </param>
     <param>
-      <key>srate</key>
-      <value>samp_rate</value>
-    </param>
-    <param>
-      <key>stemplot</key>
-      <value>False</value>
+      <key>freqhalf</key>
+      <value>True</value>
     </param>
     <param>
       <key>tr_chan</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>tr_delay</key>
       <value>0</value>
     </param>
     <param>
@@ -2061,10 +2459,6 @@ class blk(gr.basic_block):
     <param>
       <key>tr_mode</key>
       <value>qtgui.TRIG_MODE_FREE</value>
-    </param>
-    <param>
-      <key>tr_slope</key>
-      <value>qtgui.TRIG_SLOPE_POS</value>
     </param>
     <param>
       <key>tr_tag</key>
@@ -2079,20 +2473,24 @@ class blk(gr.basic_block):
       <value>0.10</value>
     </param>
     <param>
-      <key>ylabel</key>
-      <value>Amplitude</value>
+      <key>wintype</key>
+      <value>firdes.WIN_BLACKMAN_hARRIS</value>
     </param>
     <param>
-      <key>yunit</key>
-      <value>""</value>
+      <key>label</key>
+      <value>Relative Gain</value>
     </param>
     <param>
       <key>ymax</key>
-      <value>1</value>
+      <value>10</value>
     </param>
     <param>
       <key>ymin</key>
-      <value>-1</value>
+      <value>-140</value>
+    </param>
+    <param>
+      <key>units</key>
+      <value>dB</value>
     </param>
   </block>
   <block>
@@ -2131,11 +2529,11 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(592, 724)</value>
+      <value>(424, 732)</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value></value>
+      <value>tab@1</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2474,7 +2872,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>bb_gain0</key>
-      <value>0</value>
+      <value>20</value>
     </param>
     <param>
       <key>bw0</key>
@@ -2498,7 +2896,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>if_gain0</key>
-      <value>0</value>
+      <value>20</value>
     </param>
     <param>
       <key>iq_balance_mode0</key>
@@ -2506,7 +2904,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>gain0</key>
-      <value>0</value>
+      <value>20</value>
     </param>
     <param>
       <key>ant10</key>
@@ -3762,7 +4160,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3869,9 +4267,130 @@ class blk(gr.basic_block):
       <value></value>
     </param>
   </block>
+  <block>
+    <key>qtgui_tab_widget</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(808, 12)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>1,0,10,1</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tab</value>
+    </param>
+    <param>
+      <key>label0</key>
+      <value>Tab 0</value>
+    </param>
+    <param>
+      <key>label1</key>
+      <value>Tab 1</value>
+    </param>
+    <param>
+      <key>label10</key>
+      <value>Tab 10</value>
+    </param>
+    <param>
+      <key>label11</key>
+      <value>Tab 11</value>
+    </param>
+    <param>
+      <key>label12</key>
+      <value>Tab 12</value>
+    </param>
+    <param>
+      <key>label13</key>
+      <value>Tab 13</value>
+    </param>
+    <param>
+      <key>label14</key>
+      <value>Tab 14</value>
+    </param>
+    <param>
+      <key>label15</key>
+      <value>Tab 15</value>
+    </param>
+    <param>
+      <key>label16</key>
+      <value>Tab 16</value>
+    </param>
+    <param>
+      <key>label17</key>
+      <value>Tab 17</value>
+    </param>
+    <param>
+      <key>label18</key>
+      <value>Tab 18</value>
+    </param>
+    <param>
+      <key>label19</key>
+      <value>Tab 19</value>
+    </param>
+    <param>
+      <key>label2</key>
+      <value>Tab 2</value>
+    </param>
+    <param>
+      <key>label3</key>
+      <value>Tab 3</value>
+    </param>
+    <param>
+      <key>label4</key>
+      <value>Tab 4</value>
+    </param>
+    <param>
+      <key>label5</key>
+      <value>Tab 5</value>
+    </param>
+    <param>
+      <key>label6</key>
+      <value>Tab 6</value>
+    </param>
+    <param>
+      <key>label7</key>
+      <value>Tab 7</value>
+    </param>
+    <param>
+      <key>label8</key>
+      <value>Tab 8</value>
+    </param>
+    <param>
+      <key>label9</key>
+      <value>Tab 9</value>
+    </param>
+    <param>
+      <key>num_tabs</key>
+      <value>2</value>
+    </param>
+  </block>
   <connection>
     <source_block_id>blocks_add_const_vxx_0</source_block_id>
     <sink_block_id>digital_symbol_sync_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_add_const_vxx_0_0</source_block_id>
+    <sink_block_id>epy_block_2</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -3888,8 +4407,20 @@ class blk(gr.basic_block):
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>blocks_float_to_int_0</source_block_id>
+    <sink_block_id>probe</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>blocks_throttle_0</source_block_id>
     <sink_block_id>fir_filter_xxx_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_throttle_0</source_block_id>
+    <sink_block_id>qtgui_freq_sink_x_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -3907,8 +4438,38 @@ class blk(gr.basic_block):
   </connection>
   <connection>
     <source_block_id>digital_binary_slicer_fb_0</source_block_id>
+    <sink_block_id>epy_block_3</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_binary_slicer_fb_0</source_block_id>
+    <sink_block_id>epy_block_3_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_binary_slicer_fb_0</source_block_id>
     <sink_block_id>ht12e_dec</sink_block_id>
     <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_symbol_sync_xx_0</source_block_id>
+    <sink_block_id>blocks_float_to_int_0</sink_block_id>
+    <source_key>3</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_symbol_sync_xx_0</source_block_id>
+    <sink_block_id>blocks_null_sink_0_0_0_0</sink_block_id>
+    <source_key>2</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_symbol_sync_xx_0</source_block_id>
+    <sink_block_id>blocks_null_sink_0_0_0</sink_block_id>
+    <source_key>1</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
@@ -3925,19 +4486,37 @@ class blk(gr.basic_block):
   </connection>
   <connection>
     <source_block_id>divide</source_block_id>
+    <sink_block_id>blocks_add_const_vxx_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>divide</source_block_id>
     <sink_block_id>fir_filter_xxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>epy_block_0</source_block_id>
-    <sink_block_id>blocks_null_sink_0</sink_block_id>
+    <sink_block_id>blocks_null_sink_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>epy_block_1</source_block_id>
-    <sink_block_id>blocks_null_sink_0</sink_block_id>
+    <source_block_id>epy_block_2</source_block_id>
+    <sink_block_id>blocks_null_sink_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>epy_block_3</source_block_id>
+    <sink_block_id>blocks_null_sink_0_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>epy_block_3_0</source_block_id>
+    <sink_block_id>blocks_null_sink_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -3949,7 +4528,7 @@ class blk(gr.basic_block):
   </connection>
   <connection>
     <source_block_id>fir_filter_xxx_0</source_block_id>
-    <sink_block_id>qtgui_time_sink_x_0</sink_block_id>
+    <sink_block_id>blocks_tag_debug_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -3960,20 +4539,14 @@ class blk(gr.basic_block):
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>fir_filter_xxx_1</source_block_id>
-    <sink_block_id>qtgui_time_sink_x_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>ht12e_dec</source_block_id>
-    <sink_block_id>blocks_null_sink_0</sink_block_id>
+    <source_block_id>rtlsdr_source_0</source_block_id>
+    <sink_block_id>fir_filter_xxx_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>rtlsdr_source_0</source_block_id>
-    <sink_block_id>fir_filter_xxx_1</sink_block_id>
+    <sink_block_id>qtgui_freq_sink_x_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
