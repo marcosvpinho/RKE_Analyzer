@@ -16,7 +16,7 @@ class crossing(gr.basic_block):
     def __init__(self):  # only default arguments here
         gr.basic_block.__init__(
             self,
-            name='crossing',
+            name='crossing zero',
             in_sig=[np.float32],
             out_sig=[np.float32]
         )
@@ -37,9 +37,10 @@ class crossing(gr.basic_block):
             minimo = min(zeros_)
             valor = 1/(minimo/self.fs)
             print(valor)
+
         i0 = len(in_stream)
         self.consume(0, i0)
-        #output_items[0][:] = np.zeros((size),dtype=np.float32)
+        #output_items[0][:1] = np.array(buffer_)
         return len(output_items[0])
 
         
