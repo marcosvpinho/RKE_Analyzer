@@ -16,10 +16,15 @@ class blk_cod(gr.basic_block):
             in_sig=[np.int8],
             out_sig=[np.int8])
 
+        
+        # self.bit1 = np.array([0, 1, 1])
+        # self.bit0 = np.array([0, 0, 1])
+        # self.synt = np.array([0, 0, 0, 0, 0, 0, 0, 0, 1])
         self.sync = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
         self.bit1 = np.array([0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1])
         self.bit0 = np.array([0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0])
         self.bit2 = np.array([0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0])
+        self.pilot = 0
 
     def general_work(self, input_items, output_items):
         in_stream = input_items[0][:]
@@ -27,33 +32,24 @@ class blk_cod(gr.basic_block):
             return 0
         
         buffer_ = []     
-
         seq3, in_stream = in_stream[:16], in_stream[16:]
         while(true):
             if np.all(seq3 == self.sync):
                 buffer_.append(5)
-                output_items[0][:1] = np.array(buffer_)
                 self.consume(0,16)
-                return len(output_items[0])
 
-            else:
+            else :
                 if np.all(seq3 == self.bit0):
                     buffer_.append(0)
-                    output_items[0][:1] = np.array(buffer_)
                     self.consume(0,16)
-                    return len(output_items[0])
                     
                 elif np.all(seq3 == self.bit1):
                     buffer_.append(1)
-                    output_items[0][:1] = np.array(buffer_)
                     self.consume(0,16)
-                    return len(output_items[0])
                     
                 elif np.all(seq3 == self.bit2):
-                    buffer_.append(2) 
-                    output_items[0][:1] = np.array(buffer_)
+                    buffer_.append(2)
                     self.consume(0,16)
-                    return len(output_items[0])
 
                 else:
                     in_stream = in_stream[1:]
