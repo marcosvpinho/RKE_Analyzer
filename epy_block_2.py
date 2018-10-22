@@ -12,7 +12,6 @@ from gnuradio import gr
 
 class crossing(gr.basic_block):
 
-
     def __init__(self):  # only default arguments here
         gr.basic_block.__init__(
             self,
@@ -22,6 +21,7 @@ class crossing(gr.basic_block):
         )
         self.count = 0
         self.fs = 180000
+        self.sps = 0
         
 
     def general_work(self, input_items, output_items):
@@ -32,11 +32,14 @@ class crossing(gr.basic_block):
         size = len(zero_crossings[1])
         zeros_ = []
         for x in range(0,size-2):
-        	zeros_.append(zero_crossings[1][x+1] - zero_crossings[1][x])
+            dif = zero_crossings[1][x+1] - zero_crossings[1][x]
+            if dif > 10:
+        	   zeros_.append(dif)
+
         if (len(zeros_)):
             minimo = min(zeros_)
             valor = 1/(minimo/self.fs)
-            print(valor)
+            self.sps = self.fs/valor
 
         i0 = len(in_stream)
         self.consume(0, i0)
@@ -44,7 +47,14 @@ class crossing(gr.basic_block):
         return len(output_items[0])
 
         
+    def retorna_sps(self):
+        return self.sps
 
+    def ativo(self):
+        if(self.sps>1):
+            return True
+        else:
+            return False
 
 
 
