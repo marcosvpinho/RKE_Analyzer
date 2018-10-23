@@ -46,7 +46,6 @@ def general_work(replacements, input_items, tam):
             pos=pos+1
             if(pos==tam):
                 flag=2
-                print(seq)
             
         elif(flag == 2 and buffer_[i]==32):
             print(seq)
@@ -54,23 +53,47 @@ def general_work(replacements, input_items, tam):
 
         else:
             pos = 0
+            flag=0
             seq = np.zeros((tam),dtype=np.int8)
 
 
-    return oo
+    return 0
 
 def main():
-    packet = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1, 0,1,1, 0,0,1, 0,0,1, 0,0,1, 0,0,1, 0,0,1, 0,0,1, 0,0,1, 0,0,1, 0,0,1, 0,1,1, 0,1,1, 0,0,0, 0,1,1, 0,1,1, 0,1,1, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ,0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0)
+    
+    bitp = (0, 0, 0, 0, 0, 0, 0, 0, 1)
+    bit1 = (0, 1, 1)
+    bit0 = (0, 0, 1)
+    bitx =  (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+    bitx1 = (0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1)
+    bitx0 = (0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0)
+    bitx2 = (0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0)
+
+    pacoteht6026correto  = bitx+bitx1+bitx1+bitx1+bitx1+bitx2+bitx0+bitx2+bitx0+bitx2+bitx+bitx+bitx;
+    pacoteht6p20bcorreto = bitp+bit1+bit1+bit1+bit1+bit0+bit0+bit1+bit1+bit0+bit1+bit1+bit1+bit1+bit1+bit0+bit1+bit1+bit1+bit1+bit1+bit0+bit0+bit1+bit1+bit0+bit1+bit0+bit1+bitx+bitx+bitx+bitx+bitx+bitx;
+    pacoteht12ecorreto   = bitp+bit1+bit1+bit1+bit1+bit0+bit0+bit1+bit1+bit0+bit1+bit1+bit1+bitx+bitx+bitx+bitx+bit1+bit1+bit0+bit1+bit1+bit1+bit1+bit1+bit0+bit0+bit1+bit1+bit0+bit1+bit0+bit1+bitx+bitx+bitx+bitx+bitx+bitx;
+    juntos = pacoteht6026correto + pacoteht6p20bcorreto +pacoteht12ecorreto
     replacementsize = []
     replacements = []
     replacements.append([((0,0,0,0,0,0,0,0,1), 32), ((0,1,1), 48), ((0,0,1), 49)])
-    replacements.append([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 32),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 46),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 49),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 50)])
+    replacements.append([((0,0,0,0,0,0,0,0,1), 32), ((0,1,1), 48), ((0,0,1), 49)])
+    replacements.append([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 32),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 48),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 49),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 50)])
     
 
+    replacementsize.append(28)
     replacementsize.append(12)
     replacementsize.append(9)    
-    for x in range(0,2):
-        general_work(replacements[x],packet,replacementsize[x])
+    for x in range(0,3):
+        cod = general_work(replacements[x],juntos,replacementsize[x])
+
+        if(cod ==12):
+            print("HT12E")
+        elif(cod ==28):
+            print("HT6P20B")
+        elif(cod==9):
+            print("HT6026")
+        else:
+            print("not detected")
 
 if __name__ == "__main__":
     main()
