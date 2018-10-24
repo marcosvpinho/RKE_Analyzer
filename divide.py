@@ -26,7 +26,7 @@ class divide(gr.sync_block):
 		in_stream = input_items[0][:]
 		size = np.shape(in_stream)[0]
 		self.maximum = np.maximum.reduce(in_stream)
-		if(self.maximum < 0.05):
+		if(self.maximum < 0.01):
 			output_items[0][:] = np.zeros((size),dtype=np.float32)				
 			self.consume(0,size)
 			return len(output_items[0])

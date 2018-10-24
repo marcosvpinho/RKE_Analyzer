@@ -13,10 +13,12 @@ class blkfinal(gr.basic_block):
         self.codificador = "Not Detected"
         self.seq = []
         self.replacements = []
+        self.replacementsize = []
         self.packet = []
-        #self.replacements = ([((0,0,0,0,0,0,0,1), 32), ((0,1,1), 48), ((0,0,1), 49)],[((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 32),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 46),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 49),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 50)])
+        self.replacements.append(([((0,0,0,0,0,0,0,1), 32), ((0,1,1), 48), ((0,0,1), 49)]))
         self.replacements.append(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 32),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 46),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 49),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 50)]))
-        self.replacementsize=9
+        self.replacementsize.append(28)
+        self.replacementsize.append(9)
 
     def retorna_sequencia_detectada(self):
         return self.seq
@@ -25,28 +27,29 @@ class blkfinal(gr.basic_block):
         return self.codificador
     def replacement(self,replacements, input_items,tam):
 
-		size = len(input_items)
-		if(size < tam):
-			return 0
+		# print("replacements",replacements)
+		# print("tamanho",tam)
 
 		#print(input_items)
 		max_length = max([len(before) for before, after in replacements] + [0])
+		size = len(input_items)
+		if(size < max_length):
+			return 0
 		ii = 0
 		oo = 0
 		buffer_ = []
 		while ii + max_length < len(input_items):
 			for before, after in replacements:
+				#print(input_items[ii : ii + len(before)],"-------------",before)
 				if np.all(input_items[ii : ii + len(before)] == before):
 					buffer_.append(after)
-					#print(input_items[ii : ii + len(before)],"-------------",before)
 					ii += len(before)
-					print(after)
 					oo += 1
 					break
-				else:
-					buffer_.append(32)
-					oo += 1
-					ii += 1
+			else:
+				buffer_.append(32)
+				oo += 1
+				ii += 1
 		size_b = len(buffer_)
 		flag = 0
 		pos = 0
@@ -58,32 +61,40 @@ class blkfinal(gr.basic_block):
 			elif(buffer_[i]!= 32 and flag ==1):
 				seq[pos] = buffer_[i]
 				pos=pos+1
-			if(pos==tam):
-				flag=2
-				print(seq)
+				if(pos==tam):
+					flag=2
 
 			elif(flag == 2 and buffer_[i]==32):
-
+				self.seq = seq[:]
 				return tam
-
 			else:
-				pos = 0
-				seq = np.zeros((tam),dtype=np.int8)
+				pos  = 0
+				flag = 0
+				seq  = np.zeros((tam),dtype=np.int8)
 
 
-		return oo
+		return 0
 
 
 
     def general_work(self, input_items, output_items):
 
-        in_stream = input_items[0]
-        if(len(input_items[0]) < 200):
-            return 0
-        cert = []
+		in_stream = input_items[0]
+		if(len(input_items[0]) < 200):
+			return 0
+		cert = []
 
-        for i in range(0,len(self.replacements)):
-            blkfinal.replacement(self,self.replacements[i], in_stream,self.replacementsize)
+		for i in range(0,len(self.replacements)):
+			cod = blkfinal.replacement(self,self.replacements[i], in_stream,self.replacementsize[i])
+			if(cod ==12):
+				self.codificador= "HT12E"
+			elif(cod ==28):
+				self.codificador="HT6P20B"
+			elif(cod==9):
+				self.codificador="HT6026"
+			else:
+				print("not detected")
+
             #print(len(self.buffer_))
 
             # if(blkfinal.checker(self,self.packet,i)):
@@ -92,6 +103,6 @@ class blkfinal(gr.basic_block):
             #     self.consume(0,len(input_items[0]))
 
             # else:
-            self.consume(0,len(input_items[0]))
+		self.consume(0,len(input_items[0]))
 
-        return 0
+		return 0
