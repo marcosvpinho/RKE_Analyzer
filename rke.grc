@@ -183,6 +183,49 @@
     <key>variable_function_probe</key>
     <param>
       <key>block_id</key>
+      <value>crossing</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>function_args</key>
+      <value></value>
+    </param>
+    <param>
+      <key>function_name</key>
+      <value>freqs</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(192, 756)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>freqz</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>poll_rate</key>
+      <value>10</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_function_probe</key>
+    <param>
+      <key>block_id</key>
       <value>detectorx</value>
     </param>
     <param>
@@ -323,7 +366,7 @@
     <key>variable_function_probe</key>
     <param>
       <key>block_id</key>
-      <value>crossing</value>
+      <value>probe</value>
     </param>
     <param>
       <key>comment</key>
@@ -339,11 +382,11 @@
     </param>
     <param>
       <key>function_name</key>
-      <value>retorna_sps</value>
+      <value>level</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(368, 644)</value>
+      <value>(208, 644)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -355,11 +398,11 @@
     </param>
     <param>
       <key>value</key>
-      <value>45</value>
+      <value>89</value>
     </param>
     <param>
       <key>poll_rate</key>
-      <value>1</value>
+      <value>10</value>
     </param>
   </block>
   <block>
@@ -370,7 +413,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>43</value>
+      <value>45</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -456,7 +499,7 @@
     <key>variable_function_probe</key>
     <param>
       <key>block_id</key>
-      <value>probe</value>
+      <value>crossing</value>
     </param>
     <param>
       <key>comment</key>
@@ -464,7 +507,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>function_args</key>
@@ -472,11 +515,11 @@
     </param>
     <param>
       <key>function_name</key>
-      <value>level</value>
+      <value>retorna_sps</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(208, 644)</value>
+      <value>(368, 644)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -488,11 +531,11 @@
     </param>
     <param>
       <key>value</key>
-      <value>40</value>
+      <value>45</value>
     </param>
     <param>
       <key>poll_rate</key>
-      <value>10</value>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -530,7 +573,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>45</value>
+      <value>sps</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -573,11 +616,11 @@
     </param>
     <param>
       <key>value</key>
-      <value>sps</value>
+      <value>sps1</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>formatter</key>
@@ -859,7 +902,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>file</key>
@@ -1102,11 +1145,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(208, 148)</value>
+      <value>(224, 116)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1387,7 +1430,7 @@ class blkdecoder(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1024, 824)</value>
+      <value>(1176, 880)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1425,10 +1468,12 @@ class blkfinal(gr.basic_block):
         self.codificador = "Not Detected"
         self.seq = []
         self.replacements = []
+        self.replacementsize = []
         self.packet = []
-        #self.replacements = ([((0,0,0,0,0,0,0,1), 32), ((0,1,1), 48), ((0,0,1), 49)],[((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 32),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 46),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 49),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 50)])
+        self.replacements.append(([((0,0,0,0,0,0,0,1), 32), ((0,1,1), 48), ((0,0,1), 49)]))
         self.replacements.append(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 32),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 46),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 49),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 50)]))
-        self.replacementsize=9
+        self.replacementsize.append(28)
+        self.replacementsize.append(9)
 
     def retorna_sequencia_detectada(self):
         return self.seq
@@ -1437,28 +1482,29 @@ class blkfinal(gr.basic_block):
         return self.codificador
     def replacement(self,replacements, input_items,tam):
 
-		size = len(input_items)
-		if(size &lt; tam):
-			return 0
+		# print("replacements",replacements)
+		# print("tamanho",tam)
 
 		#print(input_items)
 		max_length = max([len(before) for before, after in replacements] + [0])
+		size = len(input_items)
+		if(size &lt; max_length):
+			return 0
 		ii = 0
 		oo = 0
 		buffer_ = []
 		while ii + max_length &lt; len(input_items):
 			for before, after in replacements:
+				#print(input_items[ii : ii + len(before)],"-------------",before)
 				if np.all(input_items[ii : ii + len(before)] == before):
 					buffer_.append(after)
-					#print(input_items[ii : ii + len(before)],"-------------",before)
 					ii += len(before)
-					print(after)
 					oo += 1
 					break
-				else:
-					buffer_.append(32)
-					oo += 1
-					ii += 1
+			else:
+				buffer_.append(32)
+				oo += 1
+				ii += 1
 		size_b = len(buffer_)
 		flag = 0
 		pos = 0
@@ -1470,32 +1516,40 @@ class blkfinal(gr.basic_block):
 			elif(buffer_[i]!= 32 and flag ==1):
 				seq[pos] = buffer_[i]
 				pos=pos+1
-			if(pos==tam):
-				flag=2
-				print(seq)
+				if(pos==tam):
+					flag=2
 
 			elif(flag == 2 and buffer_[i]==32):
-
+				self.seq = seq[:]
 				return tam
-
 			else:
-				pos = 0
-				seq = np.zeros((tam),dtype=np.int8)
+				pos  = 0
+				flag = 0
+				seq  = np.zeros((tam),dtype=np.int8)
 
 
-		return oo
+		return 0
 
 
 
     def general_work(self, input_items, output_items):
 
-        in_stream = input_items[0]
-        if(len(input_items[0]) &lt; 200):
-            return 0
-        cert = []
+		in_stream = input_items[0]
+		if(len(input_items[0]) &lt; 200):
+			return 0
+		cert = []
 
-        for i in range(0,len(self.replacements)):
-            blkfinal.replacement(self,self.replacements[i], in_stream,self.replacementsize)
+		for i in range(0,len(self.replacements)):
+			cod = blkfinal.replacement(self,self.replacements[i], in_stream,self.replacementsize[i])
+			if(cod ==12):
+				self.codificador= "HT12E"
+			elif(cod ==28):
+				self.codificador="HT6P20B"
+			elif(cod==9):
+				self.codificador="HT6026"
+			else:
+				print("not detected")
+
             #print(len(self.buffer_))
 
             # if(blkfinal.checker(self,self.packet,i)):
@@ -1504,9 +1558,9 @@ class blkfinal(gr.basic_block):
             #     self.consume(0,len(input_items[0]))
 
             # else:
-            self.consume(0,len(input_items[0]))
+		self.consume(0,len(input_items[0]))
 
-        return 0</value>
+		return 0</value>
     </param>
     <param>
       <key>comment</key>
@@ -1855,7 +1909,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(848, 804)</value>
+      <value>(1000, 860)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1992,7 +2046,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(848, 740)</value>
+      <value>(1000, 796)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2103,7 +2157,7 @@ class blk_cod(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1032, 764)</value>
+      <value>(1184, 820)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2215,7 +2269,7 @@ class blk_cod(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1000, 908)</value>
+      <value>(1152, 964)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2291,7 +2345,7 @@ class blkht6026(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(848, 928)</value>
+      <value>(1000, 960)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2362,7 +2416,7 @@ class blkht6026(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1000, 872)</value>
+      <value>(1152, 928)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2452,7 +2506,7 @@ class blkht6026(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(280, 276)</value>
+      <value>(288, 284)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2481,6 +2535,50 @@ class blkht6026(gr.basic_block):
     <param>
       <key>type</key>
       <value>ccf</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_module</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>source_code</key>
+      <value># this module will be imported in the into your flowgraph
+import numpy as np
+from gnuradio import gr
+import crossing
+
+
+def freqs():
+    if(crossing.ativo):
+    	print("Estou ativo e operante")
+    else:
+    	print("nao")
+
+
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(832, 500)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>freq_tuner</value>
     </param>
   </block>
   <block>
@@ -2586,7 +2684,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(848, 868)</value>
+      <value>(1000, 924)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2626,6 +2724,37 @@ class blk(gr.basic_block):
     <param>
       <key>id</key>
       <value>import_0</value>
+    </param>
+    <param>
+      <key>import</key>
+      <value>import numpy as np</value>
+    </param>
+  </block>
+  <block>
+    <key>import</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(184, 76)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>import_0_0</value>
     </param>
     <param>
       <key>import</key>
@@ -2715,7 +2844,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(400, 132)</value>
+      <value>(480, 132)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3345,7 +3474,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>bb_gain0</key>
-      <value>20</value>
+      <value>10</value>
     </param>
     <param>
       <key>bw0</key>
@@ -3369,7 +3498,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>if_gain0</key>
-      <value>20</value>
+      <value>10</value>
     </param>
     <param>
       <key>iq_balance_mode0</key>
@@ -3377,7 +3506,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>gain0</key>
-      <value>20</value>
+      <value>10</value>
     </param>
     <param>
       <key>ant10</key>
@@ -4633,7 +4762,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
