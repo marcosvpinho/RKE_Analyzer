@@ -22,7 +22,10 @@ class crossing(gr.basic_block):
         self.count = 0
         self.fs = 180000
         self.sps = 0
-        
+        self.ativo = 0
+        self.flag = False
+        self.list_frq = [292000000,433920000]
+        self.pos = 0
 
     def general_work(self, input_items, output_items):
         in_stream = input_items[0][:]
@@ -30,10 +33,12 @@ class crossing(gr.basic_block):
         zero_crossings = np.where(np.diff(np.signbit(input_items)))
         size = len(zero_crossings[1])
         zeros_ = []
+        zeros_ativo = []
 
         for x in range(0,size-2):
             dif = zero_crossings[1][x+1] - zero_crossings[1][x]
-            #pegando apenas diferencas maiores que 5 amostras 
+            #pegando apenas diferencas maiores que 5 amostras
+            zeros_ativo.append(dif) 
             if dif > 20:
         	   zeros_.append(dif)
 
@@ -44,6 +49,14 @@ class crossing(gr.basic_block):
             self.sps = self.fs/valor
         else:
             self.sps = 0
+
+        if (len(zeros_ativo)):
+            minimo = min(zeros_ativo)
+            valor = 1/(minimo/self.fs)
+            self.ativo = self.fs/valor
+        else:
+            self.ativo = 0
+
 
         i0 = len(in_stream)
         self.consume(0, i0)
@@ -58,13 +71,23 @@ class crossing(gr.basic_block):
             return int(self.sps)
 
     def ativo(self):
-        if(self.sps):
+        if(self.ativo>30):
             return True
         else:
             return False
 
+    def freq(self):
 
+        if(crossing.ativo(self)):
+            return self.list_frq[self.pos]
+        else:
+            
+            if(self.pos <= len(self.list_frq)-1):
+                val = self.list_frq[self.pos]
+                self.pos = self.pos +1
+                return val
 
-
-
-
+            else:
+                self.pos = 0
+                val = self.list_frq[self.pos]
+                return val

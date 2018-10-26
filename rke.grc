@@ -117,6 +117,76 @@
     </param>
   </block>
   <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(712, 12)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>fft_n</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>128</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_function_probe</key>
+    <param>
+      <key>block_id</key>
+      <value>crossing</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>function_args</key>
+      <value></value>
+    </param>
+    <param>
+      <key>function_name</key>
+      <value>freq</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(640, 820)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>freq</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>292000000</value>
+    </param>
+    <param>
+      <key>poll_rate</key>
+      <value>0.05</value>
+    </param>
+  </block>
+  <block>
     <key>variable_qtgui_range</key>
     <param>
       <key>comment</key>
@@ -191,7 +261,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>function_args</key>
@@ -507,7 +577,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>function_args</key>
@@ -536,33 +606,6 @@
     <param>
       <key>poll_rate</key>
       <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(712, 12)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>sps_6026</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>45</value>
     </param>
   </block>
   <block>
@@ -620,7 +663,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>formatter</key>
@@ -738,6 +781,49 @@
     </param>
   </block>
   <block>
+    <key>variable_qtgui_label</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>freq</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>formatter</key>
+      <value>None</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(632, 916)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>variable_qtgui_label_0_2</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>freeq</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>real</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_add_const_vxx</key>
     <param>
       <key>alias</key>
@@ -757,7 +843,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -808,7 +894,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -855,11 +941,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(488, 288)</value>
+      <value>(488, 224)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -880,6 +966,49 @@
     <param>
       <key>vlen</key>
       <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_complex_to_mag_squared</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(840, 316)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_complex_to_mag_squared_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>fft_n</value>
     </param>
   </block>
   <block>
@@ -957,7 +1086,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1008,11 +1137,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1000, 384)</value>
+      <value>(936, 440)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1055,7 +1184,54 @@
     </param>
     <param>
       <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1184, 440)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_null_sink_0_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
       <value>1</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_null_sink</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bus_conns</key>
+      <value>[[0,],]</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1102,7 +1278,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1123,6 +1299,57 @@
     <param>
       <key>num_inputs</key>
       <value>1</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_stream_to_vector</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(456, 316)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_stream_to_vector_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>num_items</key>
+      <value>fft_n</value>
     </param>
     <param>
       <key>vlen</key>
@@ -1185,6 +1412,57 @@
     </param>
   </block>
   <block>
+    <key>blocks_vector_to_stream</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1016, 316)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_vector_to_stream_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>num_items</key>
+      <value>fft_n</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
     <key>epy_block</key>
     <param>
       <key>alias</key>
@@ -1220,7 +1498,10 @@ class crossing(gr.basic_block):
         self.count = 0
         self.fs = 180000
         self.sps = 0
-        
+        self.ativo = 0
+        self.flag = False
+        self.list_frq = [292000000,433920000]
+        self.pos = 0
 
     def general_work(self, input_items, output_items):
         in_stream = input_items[0][:]
@@ -1228,10 +1509,12 @@ class crossing(gr.basic_block):
         zero_crossings = np.where(np.diff(np.signbit(input_items)))
         size = len(zero_crossings[1])
         zeros_ = []
+        zeros_ativo = []
 
         for x in range(0,size-2):
             dif = zero_crossings[1][x+1] - zero_crossings[1][x]
-            #pegando apenas diferencas maiores que 5 amostras 
+            #pegando apenas diferencas maiores que 5 amostras
+            zeros_ativo.append(dif) 
             if dif &gt; 20:
         	   zeros_.append(dif)
 
@@ -1242,6 +1525,14 @@ class crossing(gr.basic_block):
             self.sps = self.fs/valor
         else:
             self.sps = 0
+
+        if (len(zeros_ativo)):
+            minimo = min(zeros_ativo)
+            valor = 1/(minimo/self.fs)
+            self.ativo = self.fs/valor
+        else:
+            self.ativo = 0
+
 
         i0 = len(in_stream)
         self.consume(0, i0)
@@ -1256,16 +1547,26 @@ class crossing(gr.basic_block):
             return int(self.sps)
 
     def ativo(self):
-        if(self.sps):
+        if(self.ativo&gt;30):
             return True
         else:
             return False
 
+    def freq(self):
 
+        if(crossing.ativo(self)):
+            return self.list_frq[self.pos]
+        else:
+            
+            if(self.pos &lt;= len(self.list_frq)-1):
+                val = self.list_frq[self.pos]
+                self.pos = self.pos +1
+                return val
 
-
-
-
+            else:
+                self.pos = 0
+                val = self.list_frq[self.pos]
+                return val
 </value>
     </param>
     <param>
@@ -1274,7 +1575,7 @@ class crossing(gr.basic_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1430,7 +1731,7 @@ class blkdecoder(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1176, 880)</value>
+      <value>(1152, 880)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1547,8 +1848,8 @@ class blkfinal(gr.basic_block):
 				self.codificador="HT6P20B"
 			elif(cod==9):
 				self.codificador="HT6026"
-			else:
-				print("not detected")
+				
+				
 
             #print(len(self.buffer_))
 
@@ -1568,11 +1869,11 @@ class blkfinal(gr.basic_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(832, 376)</value>
+      <value>(832, 440)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1599,7 +1900,7 @@ class blkfinal(gr.basic_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1642,7 +1943,7 @@ class blkfinal(gr.basic_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>ted_gain</key>
@@ -1779,11 +2080,11 @@ class divide(gr.sync_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(656, 288)</value>
+      <value>(672, 224)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1909,7 +2210,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1000, 860)</value>
+      <value>(984, 684)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2046,7 +2347,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1000, 796)</value>
+      <value>(984, 740)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2157,7 +2458,7 @@ class blk_cod(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1184, 820)</value>
+      <value>(984, 796)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2345,7 +2646,7 @@ class blkht6026(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1000, 960)</value>
+      <value>(1096, 808)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2416,7 +2717,7 @@ class blkht6026(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1152, 928)</value>
+      <value>(1040, 928)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2425,6 +2726,69 @@ class blkht6026(gr.basic_block):
     <param>
       <key>id</key>
       <value>epy_block_3_0_0_0</value>
+    </param>
+  </block>
+  <block>
+    <key>fft_vxx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>fft_size</key>
+      <value>fft_n</value>
+    </param>
+    <param>
+      <key>forward</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(616, 284)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>fft</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>nthreads</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>shift</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>window</key>
+      <value>window.blackmanharris(fft_n)</value>
     </param>
   </block>
   <block>
@@ -2447,7 +2811,7 @@ class blkht6026(gr.basic_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2506,7 +2870,7 @@ class blkht6026(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(288, 284)</value>
+      <value>(240, 284)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2535,50 +2899,6 @@ class blkht6026(gr.basic_block):
     <param>
       <key>type</key>
       <value>ccf</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_module</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>source_code</key>
-      <value># this module will be imported in the into your flowgraph
-import numpy as np
-from gnuradio import gr
-import crossing
-
-
-def freqs():
-    if(crossing.ativo):
-    	print("Estou ativo e operante")
-    else:
-    	print("nao")
-
-
-</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(832, 500)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>freq_tuner</value>
     </param>
   </block>
   <block>
@@ -2684,7 +3004,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1000, 924)</value>
+      <value>(984, 852)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2777,7 +3097,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3127,7 +3447,7 @@ class blk(gr.basic_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -4870,6 +5190,73 @@ class blk(gr.basic_block):
     </param>
   </block>
   <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('Sum', 'summ', [], [('0', 'float', 1)], [('0', 'float', 1)], '', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>"""
+Embedded Python Blocks:
+
+Each this file is saved, GRC will instantiate the first class it finds to get
+ports and parameters of your block. The arguments to __init__  will be the
+parameters. All of them are required to have default values!
+"""
+import numpy as np
+from gnuradio import gr
+
+class summ(gr.sync_block):
+	def __init__(self):  # only default arguments here
+		gr.sync_block.__init__(
+        	self,
+        	name='Sum',
+        	in_sig=[np.float32],
+        	out_sig=[np.float32],
+        )
+
+
+	def work(self, input_items, output_items):
+		
+		
+		in_stream = input_items[0][:]
+		somar = np.log10(sum(in_stream)/10)
+		print(somar)
+		size = len(in_stream)			
+		self.consume(0,size)
+
+		
+		return len(output_items[0])
+
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1176, 320)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>sumx</value>
+    </param>
+  </block>
+  <block>
     <key>qtgui_tab_widget</key>
     <param>
       <key>alias</key>
@@ -5003,6 +5390,12 @@ class blk(gr.basic_block):
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>blocks_complex_to_mag_squared_0</source_block_id>
+    <sink_block_id>blocks_vector_to_stream_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>blocks_file_source_0</source_block_id>
     <sink_block_id>blocks_throttle_0</sink_block_id>
     <source_key>0</source_key>
@@ -5015,8 +5408,14 @@ class blk(gr.basic_block):
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_throttle_0</source_block_id>
-    <sink_block_id>fir_filter_xxx_1</sink_block_id>
+    <source_block_id>blocks_stream_to_vector_0</source_block_id>
+    <sink_block_id>fft</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_vector_to_stream_0</source_block_id>
+    <sink_block_id>sumx</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -5081,6 +5480,12 @@ class blk(gr.basic_block):
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>fft</source_block_id>
+    <sink_block_id>blocks_complex_to_mag_squared_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>fir_filter_xxx_0</source_block_id>
     <sink_block_id>blocks_add_const_vxx_0</sink_block_id>
     <source_key>0</source_key>
@@ -5093,6 +5498,12 @@ class blk(gr.basic_block):
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>fir_filter_xxx_1</source_block_id>
+    <sink_block_id>blocks_stream_to_vector_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>rtlsdr_source_0</source_block_id>
     <sink_block_id>fir_filter_xxx_1</sink_block_id>
     <source_key>0</source_key>
@@ -5101,6 +5512,12 @@ class blk(gr.basic_block):
   <connection>
     <source_block_id>rtlsdr_source_0</source_block_id>
     <sink_block_id>qtgui_freq_sink_x_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>sumx</source_block_id>
+    <sink_block_id>blocks_null_sink_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
