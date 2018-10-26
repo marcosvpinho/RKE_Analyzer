@@ -92,8 +92,8 @@ class blkfinal(gr.basic_block):
 				self.codificador="HT6P20B"
 			elif(cod==9):
 				self.codificador="HT6026"
-			else:
-				print("not detected")
+				
+				
 
             #print(len(self.buffer_))
 
