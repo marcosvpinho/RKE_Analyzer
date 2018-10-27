@@ -4,7 +4,7 @@
 # GNU Radio Python Flow Graph
 # Title: RKE Analyzer
 # Author: Marcos
-# Generated: Thu Oct 25 23:45:09 2018
+# Generated: Sat Oct 27 10:22:58 2018
 ##################################################
 
 if __name__ == '__main__':
@@ -27,7 +27,6 @@ from gnuradio import qtgui
 from gnuradio.eng_option import eng_option
 from gnuradio.fft import window
 from gnuradio.filter import firdes
-from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
 import numpy as np
 import osmosdr
@@ -69,21 +68,19 @@ class garage(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.sps = sps = 89
         self.sdr_rate = sdr_rate = 1.8e6
-        self.my_seq = my_seq = 0
-        self.my_encoder = my_encoder = 0
-        self.decim = decim = 20
-        self.variable_qtgui_label_0_1_0 = variable_qtgui_label_0_1_0 = my_seq
-        self.variable_qtgui_label_0_1 = variable_qtgui_label_0_1 = my_encoder
-        self.variable_qtgui_label_0 = variable_qtgui_label_0 = sps
+        self.freqdetectada = freqdetectada = 0
+        self.decim = decim = 10
+        self.variable_qtgui_label_0_2 = variable_qtgui_label_0_2 = freqdetectada
+        self.sps = sps = 45
         self.samp_rate = samp_rate = sdr_rate / decim
-        self.freq = freq = 292e6
+        self.freq = freq = 292000000
         self.fft_n = fft_n = 128
 
         ##################################################
         # Blocks
         ##################################################
+        self.sumx = sumx.summ()
         self.tab = Qt.QTabWidget()
         self.tab_widget_0 = Qt.QWidget()
         self.tab_layout_0 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.tab_widget_0)
@@ -100,60 +97,30 @@ class garage(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 1):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._freq_range = Range(291e6, 433.92e6, 5000, 292e6, 200)
-        self._freq_win = RangeWidget(self._freq_range, self.set_freq, "freq", "counter_slider", float)
-        self.top_grid_layout.addWidget(self._freq_win, 0, 0, 1, 1)
-        for r in range(0, 1):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(0, 1):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self._variable_qtgui_label_0_1_0_tool_bar = Qt.QToolBar(self)
 
-        if None:
-          self._variable_qtgui_label_0_1_0_formatter = None
-        else:
-          self._variable_qtgui_label_0_1_0_formatter = lambda x: repr(x)
-
-        self._variable_qtgui_label_0_1_0_tool_bar.addWidget(Qt.QLabel('Quadro'+": "))
-        self._variable_qtgui_label_0_1_0_label = Qt.QLabel(str(self._variable_qtgui_label_0_1_0_formatter(self.variable_qtgui_label_0_1_0)))
-        self._variable_qtgui_label_0_1_0_tool_bar.addWidget(self._variable_qtgui_label_0_1_0_label)
-        self.top_grid_layout.addWidget(self._variable_qtgui_label_0_1_0_tool_bar)
-        self._variable_qtgui_label_0_1_tool_bar = Qt.QToolBar(self)
-
-        if None:
-          self._variable_qtgui_label_0_1_formatter = None
-        else:
-          self._variable_qtgui_label_0_1_formatter = lambda x: repr(x)
-
-        self._variable_qtgui_label_0_1_tool_bar.addWidget(Qt.QLabel('Codigo'+": "))
-        self._variable_qtgui_label_0_1_label = Qt.QLabel(str(self._variable_qtgui_label_0_1_formatter(self.variable_qtgui_label_0_1)))
-        self._variable_qtgui_label_0_1_tool_bar.addWidget(self._variable_qtgui_label_0_1_label)
-        self.top_grid_layout.addWidget(self._variable_qtgui_label_0_1_tool_bar)
-        self._variable_qtgui_label_0_tool_bar = Qt.QToolBar(self)
-
-        if None:
-          self._variable_qtgui_label_0_formatter = None
-        else:
-          self._variable_qtgui_label_0_formatter = lambda x: str(x)
-
-        self._variable_qtgui_label_0_tool_bar.addWidget(Qt.QLabel('sps'+": "))
-        self._variable_qtgui_label_0_label = Qt.QLabel(str(self._variable_qtgui_label_0_formatter(self.variable_qtgui_label_0)))
-        self._variable_qtgui_label_0_tool_bar.addWidget(self._variable_qtgui_label_0_label)
-        self.top_grid_layout.addWidget(self._variable_qtgui_label_0_tool_bar)
-        self.sumx = sumx.summ()
-
-        def _sps_probe():
+        def _freq_probe():
             while True:
-                val = self.probe.level()
+                val = self.sumx.freq_ativa()
                 try:
-                    self.set_sps(val)
+                    self.set_freq(val)
                 except AttributeError:
                     pass
-                time.sleep(1.0 / (10))
-        _sps_thread = threading.Thread(target=_sps_probe)
-        _sps_thread.daemon = True
-        _sps_thread.start()
+                time.sleep(1.0 / (0.15))
+        _freq_thread = threading.Thread(target=_freq_probe)
+        _freq_thread.daemon = True
+        _freq_thread.start()
 
+        self._variable_qtgui_label_0_2_tool_bar = Qt.QToolBar(self)
+
+        if None:
+          self._variable_qtgui_label_0_2_formatter = None
+        else:
+          self._variable_qtgui_label_0_2_formatter = lambda x: repr(x)
+
+        self._variable_qtgui_label_0_2_tool_bar.addWidget(Qt.QLabel('freeq'+": "))
+        self._variable_qtgui_label_0_2_label = Qt.QLabel(str(self._variable_qtgui_label_0_2_formatter(self.variable_qtgui_label_0_2)))
+        self._variable_qtgui_label_0_2_tool_bar.addWidget(self._variable_qtgui_label_0_2_label)
+        self.top_grid_layout.addWidget(self._variable_qtgui_label_0_2_tool_bar)
         self.rtlsdr_source_0 = osmosdr.source( args="numchan=" + str(1) + " " + '' )
         self.rtlsdr_source_0.set_sample_rate(sdr_rate)
         self.rtlsdr_source_0.set_center_freq(freq, 0)
@@ -211,30 +178,17 @@ class garage(gr.top_block, Qt.QWidget):
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
         self.tab_grid_layout_0.addWidget(self._qtgui_freq_sink_x_0_win)
 
-        def _my_seq_probe():
+        def _freqdetectada_probe():
             while True:
-                val = self.detectorx.retorna_sequencia_detectada()
+                val = self.sumx.freq_detectada()
                 try:
-                    self.set_my_seq(val)
+                    self.set_freqdetectada(val)
                 except AttributeError:
                     pass
-                time.sleep(1.0 / (10))
-        _my_seq_thread = threading.Thread(target=_my_seq_probe)
-        _my_seq_thread.daemon = True
-        _my_seq_thread.start()
-
-
-        def _my_encoder_probe():
-            while True:
-                val = self.detectorx.retorna_codificador_detectado()
-                try:
-                    self.set_my_encoder(val)
-                except AttributeError:
-                    pass
-                time.sleep(1.0 / (10))
-        _my_encoder_thread = threading.Thread(target=_my_encoder_probe)
-        _my_encoder_thread.daemon = True
-        _my_encoder_thread.start()
+                time.sleep(1.0 / (0.15))
+        _freqdetectada_thread = threading.Thread(target=_freqdetectada_probe)
+        _freqdetectada_thread.daemon = True
+        _freqdetectada_thread.start()
 
         self.fir_filter_xxx_1 = filter.fir_filter_ccf(decim, (1, ))
         self.fir_filter_xxx_1.declare_sample_delay(0)
@@ -263,13 +217,6 @@ class garage(gr.top_block, Qt.QWidget):
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
-    def get_sps(self):
-        return self.sps
-
-    def set_sps(self, sps):
-        self.sps = sps
-        self.set_variable_qtgui_label_0(self._variable_qtgui_label_0_formatter(self.sps))
-
     def get_sdr_rate(self):
         return self.sdr_rate
 
@@ -279,19 +226,12 @@ class garage(gr.top_block, Qt.QWidget):
         self.rtlsdr_source_0.set_sample_rate(self.sdr_rate)
         self.qtgui_freq_sink_x_0.set_frequency_range(0, self.sdr_rate)
 
-    def get_my_seq(self):
-        return self.my_seq
+    def get_freqdetectada(self):
+        return self.freqdetectada
 
-    def set_my_seq(self, my_seq):
-        self.my_seq = my_seq
-        self.set_variable_qtgui_label_0_1_0(self._variable_qtgui_label_0_1_0_formatter(self.my_seq))
-
-    def get_my_encoder(self):
-        return self.my_encoder
-
-    def set_my_encoder(self, my_encoder):
-        self.my_encoder = my_encoder
-        self.set_variable_qtgui_label_0_1(self._variable_qtgui_label_0_1_formatter(self.my_encoder))
+    def set_freqdetectada(self, freqdetectada):
+        self.freqdetectada = freqdetectada
+        self.set_variable_qtgui_label_0_2(self._variable_qtgui_label_0_2_formatter(self.freqdetectada))
 
     def get_decim(self):
         return self.decim
@@ -300,26 +240,18 @@ class garage(gr.top_block, Qt.QWidget):
         self.decim = decim
         self.set_samp_rate(self.sdr_rate / self.decim)
 
-    def get_variable_qtgui_label_0_1_0(self):
-        return self.variable_qtgui_label_0_1_0
+    def get_variable_qtgui_label_0_2(self):
+        return self.variable_qtgui_label_0_2
 
-    def set_variable_qtgui_label_0_1_0(self, variable_qtgui_label_0_1_0):
-        self.variable_qtgui_label_0_1_0 = variable_qtgui_label_0_1_0
-        Qt.QMetaObject.invokeMethod(self._variable_qtgui_label_0_1_0_label, "setText", Qt.Q_ARG("QString", self.variable_qtgui_label_0_1_0))
+    def set_variable_qtgui_label_0_2(self, variable_qtgui_label_0_2):
+        self.variable_qtgui_label_0_2 = variable_qtgui_label_0_2
+        Qt.QMetaObject.invokeMethod(self._variable_qtgui_label_0_2_label, "setText", Qt.Q_ARG("QString", self.variable_qtgui_label_0_2))
 
-    def get_variable_qtgui_label_0_1(self):
-        return self.variable_qtgui_label_0_1
+    def get_sps(self):
+        return self.sps
 
-    def set_variable_qtgui_label_0_1(self, variable_qtgui_label_0_1):
-        self.variable_qtgui_label_0_1 = variable_qtgui_label_0_1
-        Qt.QMetaObject.invokeMethod(self._variable_qtgui_label_0_1_label, "setText", Qt.Q_ARG("QString", self.variable_qtgui_label_0_1))
-
-    def get_variable_qtgui_label_0(self):
-        return self.variable_qtgui_label_0
-
-    def set_variable_qtgui_label_0(self, variable_qtgui_label_0):
-        self.variable_qtgui_label_0 = variable_qtgui_label_0
-        Qt.QMetaObject.invokeMethod(self._variable_qtgui_label_0_label, "setText", Qt.Q_ARG("QString", self.variable_qtgui_label_0))
+    def set_sps(self, sps):
+        self.sps = sps
 
     def get_samp_rate(self):
         return self.samp_rate
