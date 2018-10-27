@@ -147,7 +147,7 @@
     <key>variable_function_probe</key>
     <param>
       <key>block_id</key>
-      <value>crossing</value>
+      <value>sumx</value>
     </param>
     <param>
       <key>comment</key>
@@ -155,7 +155,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>function_args</key>
@@ -163,7 +163,7 @@
     </param>
     <param>
       <key>function_name</key>
-      <value>freq</value>
+      <value>freq_ativa</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -183,7 +183,7 @@
     </param>
     <param>
       <key>poll_rate</key>
-      <value>0.05</value>
+      <value>0.15</value>
     </param>
   </block>
   <block>
@@ -198,7 +198,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -247,6 +247,49 @@
     <param>
       <key>widget</key>
       <value>counter_slider</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_function_probe</key>
+    <param>
+      <key>block_id</key>
+      <value>sumx</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>function_args</key>
+      <value></value>
+    </param>
+    <param>
+      <key>function_name</key>
+      <value>freq_detectada</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(800, 820)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>freqdetectada</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>poll_rate</key>
+      <value>0.15</value>
     </param>
   </block>
   <block>
@@ -304,7 +347,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>function_args</key>
@@ -347,7 +390,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>function_args</key>
@@ -444,7 +487,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>function_args</key>
@@ -546,7 +589,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -620,7 +663,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>formatter</key>
@@ -706,7 +749,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>formatter</key>
@@ -749,7 +792,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>formatter</key>
@@ -788,11 +831,11 @@
     </param>
     <param>
       <key>value</key>
-      <value>freq</value>
+      <value>freqdetectada</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>formatter</key>
@@ -820,7 +863,7 @@
     </param>
     <param>
       <key>type</key>
-      <value>real</value>
+      <value>raw</value>
     </param>
   </block>
   <block>
@@ -988,7 +1031,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(840, 316)</value>
+      <value>(832, 316)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1325,7 +1368,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 316)</value>
+      <value>(448, 316)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1431,7 +1474,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1016, 316)</value>
+      <value>(1008, 316)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1588,158 +1631,6 @@ class crossing(gr.basic_block):
     <param>
       <key>id</key>
       <value>crossing</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('Decoder', 'blkdecoder', [], [('0', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>import numpy as np
-from gnuradio import gr
-
-class blkdecoder(gr.basic_block):
-    def __init__(self):  # only default arguments here
-        gr.basic_block.__init__(
-            self,
-            name='Decoder',
-            in_sig=[np.int8],
-            out_sig=[np.int8]
-        )
-        self.buffer_ = []
-        self.codificador = "Not Detected"
-        self.seq = []
-        self.replacements = []
-        self.packet = []
-
-    def retorna_sequencia_detectada(self):
-        return self.seq
-
-    def retorna_codificador_detectado(self):
-        return self.codificador
-    def replacement(self,replacements, in_stream):
-
-        max_length = max([len(before) for before, after in replacements] + [0])
-        ii = 0
-        oo = 0
-        buffer_ = []
-        while ii + max_length &lt; len(in_stream):
-            for before, after in replacements:
-                if np.all(in_stream[ii : ii + len(before)] == before):
-                    buffer_.append(after)
-                    ii += len(before)
-                    oo += 1
-                    break
-            else:
-                ii += 1
-
-        self.packet[:] = buffer_
-
-        return 0
-
-    def checker(self,in_stream,pos):
-
-        len_stream = len(in_stream)
-        flag = 0    
-
-        if(pos == 0):
-            for i in range(0,len_stream):
-                if(in_stream[i] == 32 and flag == 0):
-                    flag = 1
-
-                elif(flag &gt; 0 and flag &lt;= 9 and in_stream[i] != 32):
-                    self.buffer_.append(in_stream[i])
-                    flag = flag + 1
-
-                elif(flag == 10):
-                    self.codificador = "HT6026"
-                    self.seq = self.buffer_[0:10]
-                    flag = 0
-                    return True
-
-                else:
-                    flag = 0
-                    self.buffer_ = []
-
-            return False
-
-        else:
-            for i in range(0,len_stream -1):
-
-                if(in_stream[i] == 32 and flag == 0):
-                    flag = 1
-
-                elif(flag &gt; 0 and flag &lt; 28 and in_stream[i] != 32):
-                    self.buffer_.append(in_stream[i])
-                    flag = flag + 1
-
-                    if(flag == 12 and in_stream[i+1] == 32):
-                        self.codificador = "HT12E"
-                        self.seq = self.buffer_[0:13]
-                        flag = 0
-                        self.consume(0,len_stream0)
-                        self.consume(1,len_stream1)
-                        return True
-
-                    elif(flag == 28 and in_stream1[i+1] == 32):
-                        self.codificador = "HT6p20b"
-                        self.seq = self.buffer_[0:29]
-                        flag = 0
-                        self.consume(0,len_stream0)
-                        self.consume(1,len_stream1)
-                        return True    
-                else:
-                    flag = 0
-                    self.buffer_=[]
-
-            return False
-
-
-    def general_work(self, input_items, output_items):
-
-        in_stream = input_items[0]
-        if(len(input_items[0]) &lt; 300):
-            return 0
-        cert = []
-        self.replacements.append([((0,0,0,0,0,0,0,1), 32), ((0,1,1), 48), ((0,0,1), 49)])
-        self.replacements.append([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 32),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 46),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 49),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 50)])
-        
-        for i in range(0,1):
-            blkdecoder.replacement(self,self.replacements[i], in_stream)
-            if(blkdecoder.checker(self,self.packet,i)):
-                self.consume(0,len(input_items[0]))
-
-            else:
-                self.consume(0,len(input_items[0]))
-
-        return 0</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1152, 880)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>detector</value>
     </param>
   </block>
   <block>
@@ -2103,384 +1994,6 @@ class divide(gr.sync_block):
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('ht6026', 'blk', [('min_agreements', '2'), ('debug', 'True')], [('0', 'byte', 1)], [('0', 'byte', 1)], '', ['debug', 'min_agreements'])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>"""
-Embedded Python Blocks:
-
-Each this file is saved, GRC will instantiate the first class it finds to get
-ports and parameters of your block. The arguments to __init__  will be the
-parameters. All of them are required to have default values!
-"""
-import numpy as np
-from gnuradio import gr
-
-class blk(gr.basic_block):
-    def __init__(self, min_agreements=2, debug=True):  # only default arguments here
-        gr.basic_block.__init__(
-            self,
-            name="ht6026",
-            in_sig=[np.int8],
-            out_sig=[np.int8])
-        self.min_agreements = min_agreements
-        self.debug = debug
-
-        self.bit1 = np.array([0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1])
-        self.bit0 = np.array([0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0])
-        self.bit2 = np.array([0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0])
-
-        self.agreements = 0
-        self.buffer_ = []  
-
-    def general_work(self, input_items, output_items):
-        size = np.shape(input_items)[0]
-        in_stream = np.zeros((size),dtype=np.int8)	
-        in_stream = input_items[0][:]
-        nonzeros = np.flatnonzero(in_stream)
-        if len(nonzeros) == 0:
-            i0 = len(in_stream)
-        else:
-            i0 = nonzeros[0]
-        # i0 = first nonzero input index.
-
-        in_stream = in_stream[i0:]
-        self.consume(0, i0)
-        bit= np.array([0])
-        in_stream =  np.concatenate((bit,in_stream),axis=None)
-        
-
-
-        if len(in_stream) &lt; 352 or len(output_items[0]) &lt; 10:
-            return 0
-            
-        # At this point, the first entry should necessarily be 1, and
-        # we should have at least 100 input data items.
-
-        #in_stream = in_stream[1:]
-        #self.consume(0, 1)
-        
-        buffer_ = []
-        while len(in_stream) &gt;= 16 and len(buffer_) &lt; 9:        
-
-            seq3, in_stream = in_stream[:16], in_stream[16:]
-            self.consume(0, 16)
-            if np.all(seq3 == self.bit0):
-                buffer_.append(0)
-                
-            elif np.all(seq3 == self.bit1):
-                buffer_.append(1)
-                
-            elif np.all(seq3 == self.bit2):
-                buffer_.append(2)    
-                
-            else:
-                print("errou")
-                self.consume(0, 16 * (10 - len(buffer_)))
-                return 0
-
-        if buffer_ == self.buffer_:
-            self.agreements += 1
-        else:
-            self.buffer_ = buffer_
-            self.agreements = 0
-
-        if self.agreements &gt; self.min_agreements:
-            output_items[0][:9] = np.array(buffer_) + ord('0')
-            output_items[0][9] = ord('\n')
-            if self.debug:
-                print(self.agreements, buffer_)
-            return len(output_items)
-        else:
-            return len(output_items)
-</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>debug</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(984, 684)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>epy_block_0</value>
-    </param>
-    <param>
-      <key>min_agreements</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('Decoder for HT6P20', 'blk', [('min_agreements', '3'), ('debug', 'True')], [('0', 'byte', 1)], [('0', 'byte', 1)], '', ['debug', 'min_agreements'])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>"""
-Embedded Python Blocks:
-
-Each this file is saved, GRC will instantiate the first class it finds to get
-ports and parameters of your block. The arguments to __init__  will be the
-parameters. All of them are required to have default values!
-"""
-import numpy as np
-from gnuradio import gr
-
-class blk(gr.basic_block):
-    def __init__(self, min_agreements=3, debug=True):  # only default arguments here
-        gr.basic_block.__init__(
-            self,
-            name='Decoder for HT6P20',
-            in_sig=[np.int8],
-            out_sig=[np.int8]
-        )
-        self.min_agreements = min_agreements
-        self.debug = debug
-
-        self.bit0 = np.array([0, 1, 1])
-        self.bit1 = np.array([0, 0, 1])
-
-        self.agreements = 0
-        self.buffer_ = []
-
-    def general_work(self, input_items, output_items):
-        in_stream = input_items[0][:]
-        size = np.shape(in_stream)[0]
-
-        nonzeros = np.flatnonzero(in_stream)
-        if len(nonzeros) == 0:
-            i0 = len(in_stream)
-            
-        else:
-            i0 = nonzeros[0]
-        # i0 = first nonzero input index.
-
-        in_stream = in_stream[i0:]
-        self.consume(0, i0)
-
-        if len(in_stream) &lt; 100 or len(output_items[0]) &lt; 29:
-            return 0
-
-        # At this point, the first entry should necessarily be 1, and
-        # we should have at least 100 input data items.
-
-        in_stream = in_stream[1:]
-        self.consume(0, 1)
-        #print(in_stream)
-        buffer_ = []
-        flag=0
-        while len(in_stream) &gt;= 3 and len(buffer_) &lt; 28:
-            seq3, in_stream = in_stream[:3], in_stream[3:]
-            self.consume(0, 3)
-            if len(buffer_)&lt;24:  
-                if np.all(seq3 == self.bit0):
-                    buffer_.append(0)
-                elif np.all(seq3 == self.bit1):
-                    buffer_.append(1)
-                else:
-                    self.consume(0,size - (3* len(buffer_)))
-                    return len(output_items[0])
-            else:
-                if(flag==0):
-                    if np.all(seq3 == self.bit0):
-                        buffer_.append(0)           
-                        flag = (flag != 1)   
-                    else:
-                        self.consume(0,size - (3* len(buffer_)))
-                        return len(output_items[0])
-                elif(flag==1):
-                    if np.all(seq3 == self.bit1):
-                        buffer_.append(1)
-                        flag = (flag != 1) 
-                    else:
-                        self.consume(0,size - (3* len(buffer_)))
-                        return len(output_items[0]) 
-
-        if buffer_ == self.buffer_:
-            self.agreements += 1
-        else:
-            self.buffer_ = buffer_
-            self.agreements = 0
-
-        if self.agreements &gt; self.min_agreements:
-            output_items[0][:28] = np.array(buffer_) + ord('0')
-            output_items[0][28] = ord('\n')
-            if self.debug:
-                print(self.agreements, buffer_)
-            return len(output_items[0])
-        else:
-            return 0
-</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>debug</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(984, 740)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>epy_block_1</value>
-    </param>
-    <param>
-      <key>min_agreements</key>
-      <value>3</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('ht6026', 'blk_cod', [('debug', 'True'), ('sps', '0')], [('0', 'byte', 1)], [('0', 'byte', 1)], '', ['sps'])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>"""
-Embedded Python Blocks:
-
-Each this file is saved, GRC will instantiate the first class it finds to get
-ports and parameters of your block. The arguments to __init__  will be the
-parameters. All of them are required to have default values!
-"""
-import numpy as np
-from gnuradio import gr
-
-class blk_cod(gr.basic_block):
-    def __init__(self, debug=True, sps=0):  # only default arguments here
-        gr.basic_block.__init__(
-            self,
-            name="ht6026",
-            in_sig=[np.int8],
-            out_sig=[np.int8])
-
-        
-        # self.bit1 = np.array([0, 1, 1])
-        # self.bit0 = np.array([0, 0, 1])
-        # self.synt = np.array([0, 0, 0, 0, 0, 0, 0, 0, 1])
-        self.sps  = sps
-        self.sync = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-        self.bit1 = np.array([0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1])
-        self.bit0 = np.array([0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0])
-        self.bit2 = np.array([0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0])
-        self.pilot = 0
-        self.buffer_ = []
-
-    def general_work(self, input_items, output_items):
-    	size_input = len(input_items[0][:])
-    	if len(input_items[0][:]) &lt; 160:
-            return 0
-
-        ### se ativo 
-        if(self.sps):
-        	in_stream = input_items[0][:]
-        else:
-        	self.consume(0,size_input)
-        	return 0         
-        buffer_ = []
-        while(True):
-
-            if(len(in_stream) &lt; 16 ):
-            	size = len(buffer_)
-            	output_items[0] = np.zeros((size),dtype=np.int8)
-                output_items[0][:] = np.array(buffer_)
-
-
-                self.consume(0,size_input)
-                return len(output_items[0])
-
-            seq3, in_stream = in_stream[:16], in_stream[16:]
-            
-            if np.all(seq3 == self.sync):
-                i=0
-            else :
-                if np.all(seq3 == self.bit0):
-                    buffer_.append(0)
-
-                elif np.all(seq3 == self.bit1):
-                    buffer_.append(1)  
-
-                elif np.all(seq3 == self.bit2):
-                    buffer_.append(2)
-                    
-
-</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>debug</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(984, 796)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>epy_block_3</value>
-    </param>
-    <param>
-      <key>sps</key>
-      <value>minha_var</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
       <value>('ht6p20b', 'blk_cod', [('debug', 'True'), ('sps', '0')], [('0', 'byte', 1)], [('0', 'byte', 1)], '', ['sps'])</value>
     </param>
     <param>
@@ -2593,78 +2106,6 @@ class blk_cod(gr.basic_block):
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('My Replacement0', 'blkht6026', [], [('0', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>import numpy as np
-from gnuradio import gr
-
-class blkht6026(gr.basic_block):
-    def __init__(self):  # only default arguments here
-        gr.basic_block.__init__(
-            self,
-            name='My Replacement0',
-            in_sig=[np.int8],
-            out_sig=[np.int8]
-        )
-        #self.replacements = [((0,0,0,0,0,0,0,1), 32), ((0,1,1), 48), ((0,0,1), 49)]
-        self.replacements =[((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 32),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 46),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 49),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 50)]
-
-
-    def general_work(self, input_items, output_items):
-
-        if(len(input_items[0]) &lt; 300):
-            return 0
-        max_length = max([len(before) for before, after in self.replacements] + [0])
-        ii = 0
-        oo = 0
-        buffer_ = []
-        while ii + max_length &lt; len(input_items[0]):
-            for before, after in self.replacements:
-                if np.all(input_items[0][ii : ii + len(before)] == before):
-                    #output_items[0][oo] = after
-                    buffer_.append(after)
-                    ii += len(before)
-
-                    oo += 1
-                    break
-            else:
-                ii += 1
-        output_items[0][:len(buffer_)] = np.array(buffer_)
-        print("ht6026:", output_items[0])
-        self.consume(0, ii)
-        return oo</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1096, 808)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>epy_block_3_0_0</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
       <value>('My Replacement2', 'blkht6026', [], [('0', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
     </param>
     <param>
@@ -2756,7 +2197,7 @@ class blkht6026(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(616, 284)</value>
+      <value>(608, 284)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2899,124 +2340,6 @@ class blkht6026(gr.basic_block):
     <param>
       <key>type</key>
       <value>ccf</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('Decoder for HT12E', 'blk', [('min_agreements', '3'), ('debug', 'True')], [('0', 'byte', 1)], [('0', 'byte', 1)], '', ['debug', 'min_agreements'])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>"""
-Embedded Python Blocks:
-
-Each this file is saved, GRC will instantiate the first class it finds to get
-ports and parameters of your block. The arguments to __init__  will be the
-parameters. All of them are required to have default values!
-"""
-import numpy as np
-from gnuradio import gr
-
-class blk(gr.basic_block):
-    def __init__(self, min_agreements=3, debug=True):  # only default arguments here
-        gr.basic_block.__init__(
-            self,
-            name='Decoder for HT12E',
-            in_sig=[np.int8],
-            out_sig=[np.int8]
-        )
-        self.min_agreements = min_agreements
-        self.debug = debug
-
-        self.bit0 = np.array([0, 1, 1])
-        self.bit1 = np.array([0, 0, 1])
-
-        self.agreements = 0
-        self.buffer_ = []
-
-    def general_work(self, input_items, output_items):
-        in_stream = input_items[0][:]
-
-        nonzeros = np.flatnonzero(in_stream)
-        if len(nonzeros) == 0:
-            i0 = len(in_stream)
-        else:
-            i0 = nonzeros[0]
-        # i0 = first nonzero input index.
-
-        in_stream = in_stream[i0:]
-        self.consume(0, i0)
-
-        if len(in_stream) &lt; 100 or len(output_items[0]) &lt; 13:
-            return 0
-
-        # At this point, the first entry should necessarily be 1, and
-        # we should have at least 100 input data items.
-
-        in_stream = in_stream[1:]
-        self.consume(0, 1)
-        #print(in_stream)
-        buffer_ = []
-        while len(in_stream) &gt;= 3 and len(buffer_) &lt; 12:
-            seq3, in_stream = in_stream[:3], in_stream[3:]
-            self.consume(0, 3)
-            if np.all(seq3 == self.bit0):
-                buffer_.append(0)
-            elif np.all(seq3 == self.bit1):
-                buffer_.append(1)
-            else:
-                self.consume(0, 3 * (15 - len(buffer_)))
-                return 0
-
-        if buffer_ == self.buffer_:
-            self.agreements += 1
-        else:
-            self.buffer_ = buffer_
-            self.agreements = 0
-
-        if self.agreements &gt; self.min_agreements:
-            output_items[0][:12] = np.array(buffer_) + ord('0')
-            output_items[0][12] = ord('\n')
-            if self.debug:
-                print(self.agreements, buffer_)
-            return 13
-        else:
-            return 0
-</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>debug</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(984, 852)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>ht12e_dec</value>
-    </param>
-    <param>
-      <key>min_agreements</key>
-      <value>3</value>
     </param>
   </block>
   <block>
@@ -5211,6 +4534,9 @@ parameters. All of them are required to have default values!
 import numpy as np
 from gnuradio import gr
 
+
+
+
 class summ(gr.sync_block):
 	def __init__(self):  # only default arguments here
 		gr.sync_block.__init__(
@@ -5219,19 +4545,50 @@ class summ(gr.sync_block):
         	in_sig=[np.float32],
         	out_sig=[np.float32],
         )
+		self.valor = 0
+		self.list_frq = (292000000,433920000,315000000)
+		self.pos = 0
+		self.detectada = 0
 
 
 	def work(self, input_items, output_items):
 		
 		
+
 		in_stream = input_items[0][:]
-		somar = np.log10(sum(in_stream)/10)
-		print(somar)
-		size = len(in_stream)			
-		self.consume(0,size)
+		if(len(in_stream)&lt;128):
+			return
+
+		sum_ = sum(in_stream)
+		if(sum_ &gt;0):
+			somar = np.log10(sum_/10)
+			self.valor = somar
+			size = len(in_stream)			
+			self.consume(0,size)
 
 		
 		return len(output_items[0])
+	def freq_detectada(self):
+		if(self.detectada &gt;0):
+			return self.detectada
+		else:
+			return "Procurando..."
+	def freq_ativa(self):
+		if(self.valor &gt; 1):
+			self.detectada = self.list_frq[self.pos]
+			return self.list_frq[self.pos]
+		else:
+
+			if(self.pos &lt;= len(self.list_frq)-1):
+				val = self.list_frq[self.pos]
+				self.pos = self.pos +1
+				return val
+
+			else:
+				self.pos = 0
+				val = self.list_frq[0]
+				return val
+
 
 </value>
     </param>
@@ -5245,7 +4602,7 @@ class summ(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1176, 320)</value>
+      <value>(1168, 320)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5470,12 +4827,6 @@ class summ(gr.sync_block):
   <connection>
     <source_block_id>divide</source_block_id>
     <sink_block_id>blocks_add_const_vxx_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>divide</source_block_id>
-    <sink_block_id>fir_filter_xxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
