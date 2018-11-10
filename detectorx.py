@@ -15,8 +15,8 @@ class blkfinal(gr.basic_block):
         self.replacements = []
         self.replacementsize = []
         self.packet = []
-        self.replacements.append(([((0,0,0,0,0,0,0,1), 32), ((0,1,1), 48), ((0,0,1), 49)]))
-        self.replacements.append(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 32),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 46),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 49),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 50)]))
+        self.replacements.append(([((0,0,0,0,0,0,0,1), 32), ((0,1,1), 0), ((0,0,1), 1)]))
+        self.replacements.append(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 32),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 1),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 0),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 2)]))
         self.replacementsize.append(28)
         self.replacementsize.append(9)
 
