@@ -17,7 +17,7 @@ class crossing(gr.basic_block):
             self,
             name='crossing zero',
             in_sig=[np.float32],
-            out_sig=[np.float32]
+            out_sig=[]
         )
         self.count = 0
         self.fs = 180000
@@ -29,6 +29,8 @@ class crossing(gr.basic_block):
 
     def general_work(self, input_items, output_items):
         in_stream = input_items[0][:]
+        if(len(in_stream)<200):
+        	return 0
         ## cruzamentos por zero
         zero_crossings = np.where(np.diff(np.signbit(input_items)))
         size = len(zero_crossings[1])
@@ -61,8 +63,7 @@ class crossing(gr.basic_block):
         i0 = len(in_stream)
         self.consume(0, i0)
         #output_items[0][:1] = np.array(buffer_)
-        return len(output_items[0])
-
+        return 0
         
     def retorna_sps(self):
         if(self.sps < 10):
@@ -75,19 +76,3 @@ class crossing(gr.basic_block):
             return True
         else:
             return False
-
-    def freq(self):
-
-        if(crossing.ativo(self)):
-            return self.list_frq[self.pos]
-        else:
-            
-            if(self.pos <= len(self.list_frq)-1):
-                val = self.list_frq[self.pos]
-                self.pos = self.pos +1
-                return val
-
-            else:
-                self.pos = 0
-                val = self.list_frq[self.pos]
-                return val
