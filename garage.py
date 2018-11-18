@@ -4,7 +4,7 @@
 # GNU Radio Python Flow Graph
 # Title: RKE Analyzer
 # Author: Marcos
-# Generated: Sat Nov 10 16:30:09 2018
+# Generated: Sun Nov 18 15:35:27 2018
 ##################################################
 
 if __name__ == '__main__':
@@ -74,7 +74,7 @@ class garage(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.sps1 = sps1 = 89
-        self.sps = sps = 20
+        self.sps = sps = 44
         self.sdr_rate = sdr_rate = 1.8e6
         self.my_seq = my_seq = 0
         self.my_encoder = my_encoder = 0
@@ -94,7 +94,6 @@ class garage(gr.top_block, Qt.QWidget):
         # Blocks
         ##################################################
         self.sumx = sumx.summ(limiar_db=20.0)
-        self.probe = blocks.probe_signal_i()
         self.crossing = crossing.crossing()
         self.tab = Qt.QTabWidget()
         self.tab_widget_0 = Qt.QWidget()
@@ -113,19 +112,6 @@ class garage(gr.top_block, Qt.QWidget):
         for c in range(0, 1):
             self.top_grid_layout.setColumnStretch(c, 1)
 
-        def _sps1_probe():
-            while True:
-                val = self.probe.level()
-                try:
-                    self.set_sps1(val)
-                except AttributeError:
-                    pass
-                time.sleep(1.0 / (10))
-        _sps1_thread = threading.Thread(target=_sps1_probe)
-        _sps1_thread.daemon = True
-        _sps1_thread.start()
-
-
         def _sps_probe():
             while True:
                 val = self.crossing.retorna_sps()
@@ -133,11 +119,12 @@ class garage(gr.top_block, Qt.QWidget):
                     self.set_sps(val)
                 except AttributeError:
                     pass
-                time.sleep(1.0 / (1))
+                time.sleep(1.0 / (0.4))
         _sps_thread = threading.Thread(target=_sps_probe)
         _sps_thread.daemon = True
         _sps_thread.start()
 
+        self.probe = blocks.probe_signal_i()
 
         def _freq_probe():
             while True:
@@ -146,7 +133,7 @@ class garage(gr.top_block, Qt.QWidget):
                     self.set_freq(val)
                 except AttributeError:
                     pass
-                time.sleep(1.0 / (2))
+                time.sleep(1.0 / (1))
         _freq_thread = threading.Thread(target=_freq_probe)
         _freq_thread.daemon = True
         _freq_thread.start()
@@ -207,6 +194,19 @@ class garage(gr.top_block, Qt.QWidget):
         self._variable_qtgui_label_0_label = Qt.QLabel(str(self._variable_qtgui_label_0_formatter(self.variable_qtgui_label_0)))
         self._variable_qtgui_label_0_tool_bar.addWidget(self._variable_qtgui_label_0_label)
         self.top_grid_layout.addWidget(self._variable_qtgui_label_0_tool_bar)
+
+        def _sps1_probe():
+            while True:
+                val = self.probe.level()
+                try:
+                    self.set_sps1(val)
+                except AttributeError:
+                    pass
+                time.sleep(1.0 / (1))
+        _sps1_thread = threading.Thread(target=_sps1_probe)
+        _sps1_thread.daemon = True
+        _sps1_thread.start()
+
         self.rtlsdr_source_0 = osmosdr.source( args="numchan=" + str(1) + " " + '' )
         self.rtlsdr_source_0.set_sample_rate(sdr_rate)
         self.rtlsdr_source_0.set_center_freq(freq, 0)
@@ -350,14 +350,14 @@ class garage(gr.top_block, Qt.QWidget):
         _freqdetectada_thread.daemon = True
         _freqdetectada_thread.start()
 
-        self.fir_filter_xxx_1 = filter.fir_filter_ccf(decim, (1, ))
+        self.fir_filter_xxx_1 = filter.fir_filter_ccc(decim, (1, ))
         self.fir_filter_xxx_1.declare_sample_delay(0)
         self.fir_filter_xxx_0 = filter.fir_filter_fff(1, (np.ones(sps) / (sps)))
         self.fir_filter_xxx_0.declare_sample_delay(0)
         self.fft = fft.fft_vcc(fft_n, True, (window.blackmanharris(fft_n)), True, 1)
-        self.epy_block_1 = epy_block_1.blk(sps=sps)
+        self.epy_block_1 = epy_block_1.clock_reset(sps=sps)
         self.divide = divide.divide()
-        self.digital_symbol_sync_xx_0 = digital.symbol_sync_ff(digital.TED_ZERO_CROSSING, sps1, 0.1, 1.0, gain, 0.2, 1, digital.constellation_bpsk().base(), digital.IR_MMSE_8TAP, 128, ([]))
+        self.digital_symbol_sync_xx_0 = digital.symbol_sync_ff(digital.TED_ZERO_CROSSING, sps, 0.1, 1.0, gain, 80, 1, digital.constellation_bpsk().base(), digital.IR_MMSE_8TAP, 128, ([]))
         self.digital_binary_slicer_fb_0 = digital.binary_slicer_fb()
         self.blocks_vector_to_stream_0 = blocks.vector_to_stream(gr.sizeof_float*1, fft_n)
         self.blocks_stream_to_vector_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, fft_n)

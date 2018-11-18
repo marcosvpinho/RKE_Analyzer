@@ -183,7 +183,7 @@
     </param>
     <param>
       <key>poll_rate</key>
-      <value>2</value>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -304,7 +304,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(296, 320)</value>
+      <value>(456, 116)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -495,11 +495,11 @@
     </param>
     <param>
       <key>value</key>
-      <value>20</value>
+      <value>44</value>
     </param>
     <param>
       <key>poll_rate</key>
-      <value>1</value>
+      <value>0.4</value>
     </param>
   </block>
   <block>
@@ -632,7 +632,7 @@
     </param>
     <param>
       <key>poll_rate</key>
-      <value>10</value>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -1215,7 +1215,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(712, 496)</value>
+      <value>(808, 488)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1496,7 +1496,7 @@ class crossing(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1048, 144)</value>
+      <value>(1072, 144)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1536,8 +1536,8 @@ class blkfinal(gr.basic_block):
         self.replacements = []
         self.replacementsize = []
         self.packet = []
-        self.replacements.append(([((0,0,0,0,0,0,0,1), 32), ((0,1,1), 0), ((0,0,1), 1)]))
-        self.replacements.append(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 32),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 1),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 0),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 2)]))
+        self.replacements.append(([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)]))
+        self.replacements.append(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 'P'),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 1),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 0),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 2)]))
         self.replacementsize.append(28)
         self.replacementsize.append(9)
 
@@ -1568,7 +1568,7 @@ class blkfinal(gr.basic_block):
 					oo += 1
 					break
 			else:
-				buffer_.append(32)
+				buffer_.append('E')
 				oo += 1
 				ii += 1
 		size_b = len(buffer_)
@@ -1576,16 +1576,16 @@ class blkfinal(gr.basic_block):
 		pos = 0
 		seq = np.zeros((tam),dtype=np.int8)
 		for i in range(0,size_b):
-			if(buffer_[i] == 32 and flag == 0 ):
+			if(buffer_[i] == 'P' and flag == 0 ):
 				flag = 1
 
-			elif(buffer_[i]!= 32 and flag ==1):
+			elif(buffer_[i]!= 'P' and buffer_[i]!= 'E' and flag ==1):
 				seq[pos] = buffer_[i]
 				pos=pos+1
 				if(pos==tam):
 					flag=2
 
-			elif(flag == 2 and buffer_[i]==32):
+			elif(flag == 2 and (buffer_[i]=='E' or buffer_[i]=='P')):
 				self.seq = seq[:]
 				return tam
 			else:
@@ -1748,7 +1748,7 @@ class blkfinal(gr.basic_block):
     </param>
     <param>
       <key>max_dev</key>
-      <value>0.2</value>
+      <value>80</value>
     </param>
     <param>
       <key>minoutbuf</key>
@@ -1764,7 +1764,7 @@ class blkfinal(gr.basic_block):
     </param>
     <param>
       <key>sps</key>
-      <value>sps1</value>
+      <value>sps</value>
     </param>
     <param>
       <key>constellation</key>
@@ -1932,7 +1932,7 @@ class msg_block(gr.basic_block):
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('Inserir tag', 'blk', [('sps', '1')], [('0', 'float', 1)], [('0', 'float', 1)], 'Embedded Python Block example - a simple multiply const', ['sps'])</value>
+      <value>('Inserir tag', 'clock_reset', [('sps', '1')], [('0', 'float', 1)], [('0', 'float', 1)], 'Embedded Python Block example - a simple multiply const', ['sps'])</value>
     </param>
     <param>
       <key>_source_code</key>
@@ -1949,7 +1949,7 @@ import pmt
 from gnuradio import gr
 
 
-class blk(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
+class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
     """Embedded Python Block example - a simple multiply const"""
 
     def __init__(self, sps=1):  # only default arguments here
@@ -1967,13 +1967,14 @@ class blk(gr.sync_block):  # other base classes are basic_block, decim_block, in
 
     def work(self, input_items, output_items):
         """example: multiply with constant"""
-        output_items[0][:] = input_items[0] * 1.0
-        if self.nitems_written(0) - self._last_called &gt; 100000:
-            key = pmt.intern("clock_est")
-            print("enviandooo",self.sps)
-            value = pmt.to_pmt((0.0, self.sps))
+        
+        if self.nitems_written(0) - self._last_called &gt; 1000000:
+            key = pmt.intern('clock_est')
+            print("enviandooo")
+            value = pmt.to_pmt((0.1, self.sps))
             self.add_item_tag(0, self.nitems_written(0), key, value)
             self._last_called = self.nitems_written(0)
+        output_items[0][:] = input_items[0] * 1.0
         return len(output_items[0])</value>
     </param>
     <param>
@@ -2322,11 +2323,11 @@ class blkht6026(gr.basic_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>True</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(264, 212)</value>
+      <value>(264, 252)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2354,7 +2355,7 @@ class blkht6026(gr.basic_block):
     </param>
     <param>
       <key>type</key>
-      <value>ccf</value>
+      <value>ccc</value>
     </param>
   </block>
   <block>
