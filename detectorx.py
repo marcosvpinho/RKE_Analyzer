@@ -15,8 +15,8 @@ class blkfinal(gr.basic_block):
         self.replacements = []
         self.replacementsize = []
         self.packet = []
-        self.replacements.append(([((0,0,0,0,0,0,0,1), 32), ((0,1,1), 0), ((0,0,1), 1)]))
-        self.replacements.append(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 32),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 1),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 0),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 2)]))
+        self.replacements.append(([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)]))
+        self.replacements.append(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 'P'),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 1),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 0),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 2)]))
         self.replacementsize.append(28)
         self.replacementsize.append(9)
 
@@ -47,7 +47,7 @@ class blkfinal(gr.basic_block):
 					oo += 1
 					break
 			else:
-				buffer_.append(32)
+				buffer_.append('E')
 				oo += 1
 				ii += 1
 		size_b = len(buffer_)
@@ -55,16 +55,16 @@ class blkfinal(gr.basic_block):
 		pos = 0
 		seq = np.zeros((tam),dtype=np.int8)
 		for i in range(0,size_b):
-			if(buffer_[i] == 32 and flag == 0 ):
+			if(buffer_[i] == 'P' and flag == 0 ):
 				flag = 1
 
-			elif(buffer_[i]!= 32 and flag ==1):
+			elif(buffer_[i]!= 'P' and buffer_[i]!= 'E' and flag ==1):
 				seq[pos] = buffer_[i]
 				pos=pos+1
 				if(pos==tam):
 					flag=2
 
-			elif(flag == 2 and buffer_[i]==32):
+			elif(flag == 2 and (buffer_[i]=='E' or buffer_[i]=='P')):
 				self.seq = seq[:]
 				return tam
 			else:
