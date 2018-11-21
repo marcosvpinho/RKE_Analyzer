@@ -4,7 +4,7 @@
 # GNU Radio Python Flow Graph
 # Title: RKE Analyzer
 # Author: Marcos
-# Generated: Sun Nov 18 15:35:27 2018
+# Generated: Tue Nov 20 23:17:06 2018
 ##################################################
 
 if __name__ == '__main__':
@@ -32,7 +32,7 @@ from optparse import OptionParser
 import crossing
 import detectorx
 import divide
-import epy_block_1
+import insert_tag
 import numpy as np
 import osmosdr
 import sip
@@ -87,14 +87,15 @@ class garage(gr.top_block, Qt.QWidget):
         self.variable_qtgui_label_0 = variable_qtgui_label_0 = sps
         self.samp_rate = samp_rate = sdr_rate / decim
         self.gain = gain = 0.01
+        self.freq_list = freq_list = (292000000, 299000000, 315000000, 433920000)
         self.freq = freq = 292000000
         self.fft_n = fft_n = 1024
 
         ##################################################
         # Blocks
         ##################################################
-        self.sumx = sumx.summ(limiar_db=20.0)
-        self.crossing = crossing.crossing()
+        self.sumx = sumx.summ(limiar_db=20.0, freq_list=(292000000, 299000000, 315000000, 433920000), sample_rate=1800000.0, len_fft=1024)
+        self.crossing = crossing.crossing(sample_rate=samp_rate, threshold=20)
         self.tab = Qt.QTabWidget()
         self.tab_widget_0 = Qt.QWidget()
         self.tab_layout_0 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.tab_widget_0)
@@ -133,7 +134,7 @@ class garage(gr.top_block, Qt.QWidget):
                     self.set_freq(val)
                 except AttributeError:
                     pass
-                time.sleep(1.0 / (1))
+                time.sleep(1.0 / (2))
         _freq_thread = threading.Thread(target=_freq_probe)
         _freq_thread.daemon = True
         _freq_thread.start()
@@ -168,7 +169,7 @@ class garage(gr.top_block, Qt.QWidget):
         else:
           self._variable_qtgui_label_0_1_formatter = lambda x: repr(x)
 
-        self._variable_qtgui_label_0_1_tool_bar.addWidget(Qt.QLabel('Codigo'+": "))
+        self._variable_qtgui_label_0_1_tool_bar.addWidget(Qt.QLabel('Codificador'+": "))
         self._variable_qtgui_label_0_1_label = Qt.QLabel(str(self._variable_qtgui_label_0_1_formatter(self.variable_qtgui_label_0_1)))
         self._variable_qtgui_label_0_1_tool_bar.addWidget(self._variable_qtgui_label_0_1_label)
         self.top_grid_layout.addWidget(self._variable_qtgui_label_0_1_tool_bar)
@@ -271,8 +272,8 @@ class garage(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
         	2048, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
-        	0, #fc
-        	sdr_rate, #bw
+        	299e6, #fc
+        	sdr_rate/10, #bw
         	"", #name
         	1 #number of inputs
         )
@@ -337,6 +338,7 @@ class garage(gr.top_block, Qt.QWidget):
         _my_encoder_thread.daemon = True
         _my_encoder_thread.start()
 
+        self.insert_tag = insert_tag.clock_reset(sps=sps)
 
         def _freqdetectada_probe():
             while True:
@@ -355,11 +357,9 @@ class garage(gr.top_block, Qt.QWidget):
         self.fir_filter_xxx_0 = filter.fir_filter_fff(1, (np.ones(sps) / (sps)))
         self.fir_filter_xxx_0.declare_sample_delay(0)
         self.fft = fft.fft_vcc(fft_n, True, (window.blackmanharris(fft_n)), True, 1)
-        self.epy_block_1 = epy_block_1.clock_reset(sps=sps)
-        self.divide = divide.divide()
-        self.digital_symbol_sync_xx_0 = digital.symbol_sync_ff(digital.TED_ZERO_CROSSING, sps, 0.1, 1.0, gain, 80, 1, digital.constellation_bpsk().base(), digital.IR_MMSE_8TAP, 128, ([]))
+        self.divide = divide.divide(threshold=0.01)
+        self.digital_symbol_sync_xx_0 = digital.symbol_sync_ff(digital.TED_ZERO_CROSSING, 60, 0.1, 1.0, gain, 40, 1, digital.constellation_bpsk().base(), digital.IR_MMSE_8TAP, 128, ([]))
         self.digital_binary_slicer_fb_0 = digital.binary_slicer_fb()
-        self.blocks_vector_to_stream_0 = blocks.vector_to_stream(gr.sizeof_float*1, fft_n)
         self.blocks_stream_to_vector_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, fft_n)
         self.blocks_null_sink_0_0_0 = blocks.null_sink(gr.sizeof_float*1)
         self.blocks_null_sink_0 = blocks.null_sink(gr.sizeof_char*1)
@@ -374,29 +374,28 @@ class garage(gr.top_block, Qt.QWidget):
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blocks_add_const_vxx_0, 0), (self.epy_block_1, 0))
+        self.connect((self.blocks_add_const_vxx_0, 0), (self.fir_filter_xxx_0, 0))
         self.connect((self.blocks_add_const_vxx_0_0, 0), (self.crossing, 0))
         self.connect((self.blocks_complex_to_mag_0, 0), (self.divide, 0))
-        self.connect((self.blocks_complex_to_mag_squared_0, 0), (self.blocks_vector_to_stream_0, 0))
+        self.connect((self.blocks_complex_to_mag_squared_0, 0), (self.sumx, 0))
         self.connect((self.blocks_float_to_int_0, 0), (self.probe, 0))
         self.connect((self.blocks_stream_to_vector_0, 0), (self.fft, 0))
-        self.connect((self.blocks_vector_to_stream_0, 0), (self.sumx, 0))
         self.connect((self.detectorx, 0), (self.blocks_null_sink_0, 0))
         self.connect((self.digital_binary_slicer_fb_0, 0), (self.detectorx, 0))
-        self.connect((self.digital_symbol_sync_xx_0, 2), (self.blocks_float_to_int_0, 0))
-        self.connect((self.digital_symbol_sync_xx_0, 3), (self.blocks_null_sink_0_0_0, 1))
+        self.connect((self.digital_symbol_sync_xx_0, 3), (self.blocks_float_to_int_0, 0))
+        self.connect((self.digital_symbol_sync_xx_0, 2), (self.blocks_null_sink_0_0_0, 1))
         self.connect((self.digital_symbol_sync_xx_0, 1), (self.blocks_null_sink_0_0_0, 0))
         self.connect((self.digital_symbol_sync_xx_0, 0), (self.digital_binary_slicer_fb_0, 0))
+        self.connect((self.divide, 0), (self.blocks_add_const_vxx_0, 0))
         self.connect((self.divide, 0), (self.blocks_add_const_vxx_0_0, 0))
-        self.connect((self.divide, 0), (self.fir_filter_xxx_0, 0))
-        self.connect((self.epy_block_1, 0), (self.digital_symbol_sync_xx_0, 0))
-        self.connect((self.epy_block_1, 0), (self.qtgui_time_sink_x_0_1, 0))
         self.connect((self.fft, 0), (self.blocks_complex_to_mag_squared_0, 0))
-        self.connect((self.fir_filter_xxx_0, 0), (self.blocks_add_const_vxx_0, 0))
+        self.connect((self.fir_filter_xxx_0, 0), (self.insert_tag, 0))
         self.connect((self.fir_filter_xxx_1, 0), (self.blocks_complex_to_mag_0, 0))
         self.connect((self.fir_filter_xxx_1, 0), (self.blocks_stream_to_vector_0, 0))
+        self.connect((self.fir_filter_xxx_1, 0), (self.qtgui_freq_sink_x_0, 0))
+        self.connect((self.insert_tag, 0), (self.digital_symbol_sync_xx_0, 0))
+        self.connect((self.insert_tag, 0), (self.qtgui_time_sink_x_0_1, 0))
         self.connect((self.rtlsdr_source_0, 0), (self.fir_filter_xxx_1, 0))
-        self.connect((self.rtlsdr_source_0, 0), (self.qtgui_freq_sink_x_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "garage")
@@ -416,8 +415,8 @@ class garage(gr.top_block, Qt.QWidget):
     def set_sps(self, sps):
         self.sps = sps
         self.set_variable_qtgui_label_0(self._variable_qtgui_label_0_formatter(self.sps))
+        self.insert_tag.sps = self.sps
         self.fir_filter_xxx_0.set_taps((np.ones(self.sps) / (self.sps)))
-        self.epy_block_1.sps = self.sps
 
     def get_sdr_rate(self):
         return self.sdr_rate
@@ -426,7 +425,7 @@ class garage(gr.top_block, Qt.QWidget):
         self.sdr_rate = sdr_rate
         self.set_samp_rate(self.sdr_rate / self.decim)
         self.rtlsdr_source_0.set_sample_rate(self.sdr_rate)
-        self.qtgui_freq_sink_x_0.set_frequency_range(0, self.sdr_rate)
+        self.qtgui_freq_sink_x_0.set_frequency_range(299e6, self.sdr_rate/10)
 
     def get_my_seq(self):
         return self.my_seq
@@ -504,6 +503,12 @@ class garage(gr.top_block, Qt.QWidget):
     def set_gain(self, gain):
         self.gain = gain
         self.digital_symbol_sync_xx_0.set_ted_gain(self.gain)
+
+    def get_freq_list(self):
+        return self.freq_list
+
+    def set_freq_list(self, freq_list):
+        self.freq_list = freq_list
 
     def get_freq(self):
         return self.freq

@@ -12,7 +12,7 @@ from gnuradio import gr
 
 class crossing(gr.basic_block):
 
-    def __init__(self):  # only default arguments here
+    def __init__(self,sample_rate=1.8e6, threshold = 20):  # only default arguments here
         gr.basic_block.__init__(
             self,
             name='crossing zero',
@@ -20,11 +20,11 @@ class crossing(gr.basic_block):
             out_sig=[]
         )
         self.count = 0
-        self.fs = 180000
+        self.threshold = threshold
+        self.fs = sample_rate
         self.sps = 0
         self.ativo = 0
         self.flag = False
-        self.list_frq = [292000000,433920000]
         self.pos = 0
 
     def general_work(self, input_items, output_items):
@@ -41,7 +41,7 @@ class crossing(gr.basic_block):
             dif = zero_crossings[1][x+1] - zero_crossings[1][x]
             #pegando apenas diferencas maiores que 5 amostras
             zeros_ativo.append(dif) 
-            if dif > 20:
+            if dif > self.threshold:
         	   zeros_.append(dif)
 
         ## pegando o menor valor

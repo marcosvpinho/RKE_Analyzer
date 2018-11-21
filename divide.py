@@ -9,13 +9,14 @@ import numpy as np
 from gnuradio import gr
 
 class divide(gr.sync_block):
-	def __init__(self):  # only default arguments here
+	def __init__(self, threshold = 0.01):  # only default arguments here
 		gr.sync_block.__init__(
         	self,
-        	name='Divide',
+        	name='Threshold',
         	in_sig=[np.float32],
         	out_sig=[np.float32],
         )
+		self.threshold = threshold
 		self.maximum = 0.0
 		self.flag = 0.0
 
@@ -26,7 +27,7 @@ class divide(gr.sync_block):
 		in_stream = input_items[0][:]
 		size = np.shape(in_stream)[0]
 		self.maximum = np.maximum.reduce(in_stream)
-		if(self.maximum < 0.01):
+		if(self.maximum < self.threshold):
 			output_items[0][:] = np.zeros((size),dtype=np.float32)				
 			self.consume(0,size)
 			return len(output_items[0])
