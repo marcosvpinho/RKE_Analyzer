@@ -183,7 +183,7 @@
     </param>
     <param>
       <key>poll_rate</key>
-      <value>1</value>
+      <value>2</value>
     </param>
   </block>
   <block>
@@ -250,6 +250,33 @@
     </param>
   </block>
   <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(16, 388)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>freq_list</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>(292000000, 299000000, 315000000, 433920000)</value>
+    </param>
+  </block>
+  <block>
     <key>variable_function_probe</key>
     <param>
       <key>block_id</key>
@@ -273,7 +300,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 828)</value>
+      <value>(800, 820)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -757,7 +784,7 @@
     </param>
     <param>
       <key>label</key>
-      <value>Codigo</value>
+      <value>Codificador</value>
     </param>
     <param>
       <key>type</key>
@@ -874,11 +901,11 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(24, 468)</value>
+      <value>(504, 396)</value>
     </param>
     <param>
       <key>_rotation</key>
-      <value>0</value>
+      <value>180</value>
     </param>
     <param>
       <key>id</key>
@@ -925,7 +952,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(904, 140)</value>
+      <value>(896, 100)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1258,7 +1285,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 220)</value>
+      <value>(480, 260)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1345,57 +1372,6 @@
     </param>
   </block>
   <block>
-    <key>blocks_vector_to_stream</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(984, 396)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_vector_to_stream_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>num_items</key>
-      <value>fft_n</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
     <key>epy_block</key>
     <param>
       <key>alias</key>
@@ -1403,7 +1379,7 @@
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('crossing zero', 'crossing', [], [('0', 'float', 1)], [], '', [])</value>
+      <value>('crossing zero', 'crossing', [('sample_rate', '1800000.0'), ('threshold', '20')], [('0', 'float', 1)], [], '', ['threshold'])</value>
     </param>
     <param>
       <key>_source_code</key>
@@ -1421,7 +1397,7 @@ from gnuradio import gr
 
 class crossing(gr.basic_block):
 
-    def __init__(self):  # only default arguments here
+    def __init__(self,sample_rate=1.8e6, threshold = 20):  # only default arguments here
         gr.basic_block.__init__(
             self,
             name='crossing zero',
@@ -1429,11 +1405,11 @@ class crossing(gr.basic_block):
             out_sig=[]
         )
         self.count = 0
-        self.fs = 180000
+        self.threshold = threshold
+        self.fs = sample_rate
         self.sps = 0
         self.ativo = 0
         self.flag = False
-        self.list_frq = [292000000,433920000]
         self.pos = 0
 
     def general_work(self, input_items, output_items):
@@ -1450,7 +1426,7 @@ class crossing(gr.basic_block):
             dif = zero_crossings[1][x+1] - zero_crossings[1][x]
             #pegando apenas diferencas maiores que 5 amostras
             zeros_ativo.append(dif) 
-            if dif &gt; 20:
+            if dif &gt; self.threshold:
         	   zeros_.append(dif)
 
         ## pegando o menor valor
@@ -1506,6 +1482,14 @@ class crossing(gr.basic_block):
       <key>id</key>
       <value>crossing</value>
     </param>
+    <param>
+      <key>sample_rate</key>
+      <value>samp_rate</value>
+    </param>
+    <param>
+      <key>threshold</key>
+      <value>20</value>
+    </param>
   </block>
   <block>
     <key>epy_block</key>
@@ -1537,9 +1521,13 @@ class blkfinal(gr.basic_block):
         self.replacementsize = []
         self.packet = []
         self.replacements.append(([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)]))
+        self.replacements.append(([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)]))
         self.replacements.append(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 'P'),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 1),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 0),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 2)]))
+        self.replacementsize.append(12)
         self.replacementsize.append(28)
         self.replacementsize.append(9)
+
+
 
     def retorna_sequencia_detectada(self):
         return self.seq
@@ -1608,11 +1596,11 @@ class blkfinal(gr.basic_block):
 		for i in range(0,len(self.replacements)):
 			cod = blkfinal.replacement(self,self.replacements[i], in_stream,self.replacementsize[i])
 			if(cod ==12):
-				self.codificador= "HT12E"
+				self.codificador= "HT12E - M1E-N"
 			elif(cod ==28):
 				self.codificador="HT6P20B"
 			elif(cod==9):
-				self.codificador="HT6026"
+				self.codificador="HT6026 - MC145026"
 				
 				
 
@@ -1748,7 +1736,7 @@ class blkfinal(gr.basic_block):
     </param>
     <param>
       <key>max_dev</key>
-      <value>80</value>
+      <value>40</value>
     </param>
     <param>
       <key>minoutbuf</key>
@@ -1764,7 +1752,7 @@ class blkfinal(gr.basic_block):
     </param>
     <param>
       <key>sps</key>
-      <value>sps</value>
+      <value>60</value>
     </param>
     <param>
       <key>constellation</key>
@@ -1783,7 +1771,7 @@ class blkfinal(gr.basic_block):
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('Divide', 'divide', [], [('0', 'float', 1)], [('0', 'float', 1)], '', [])</value>
+      <value>('Threshold', 'divide', [('threshold', '0.01')], [('0', 'float', 1)], [('0', 'float', 1)], '', ['threshold'])</value>
     </param>
     <param>
       <key>_source_code</key>
@@ -1798,13 +1786,14 @@ import numpy as np
 from gnuradio import gr
 
 class divide(gr.sync_block):
-	def __init__(self):  # only default arguments here
+	def __init__(self, threshold = 0.01):  # only default arguments here
 		gr.sync_block.__init__(
         	self,
-        	name='Divide',
+        	name='Threshold',
         	in_sig=[np.float32],
         	out_sig=[np.float32],
         )
+		self.threshold = threshold
 		self.maximum = 0.0
 		self.flag = 0.0
 
@@ -1815,7 +1804,7 @@ class divide(gr.sync_block):
 		in_stream = input_items[0][:]
 		size = np.shape(in_stream)[0]
 		self.maximum = np.maximum.reduce(in_stream)
-		if(self.maximum &lt; 0.01):
+		if(self.maximum &lt; self.threshold):
 			output_items[0][:] = np.zeros((size),dtype=np.float32)				
 			self.consume(0,size)
 			return len(output_items[0])
@@ -1859,330 +1848,9 @@ class divide(gr.sync_block):
       <key>id</key>
       <value>divide</value>
     </param>
-  </block>
-  <block>
-    <key>epy_block</key>
     <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('Embedded Python Block', 'blk', [('example_param', '1.0')], [('0', 'complex', 1)], [('0', 'complex', 1)], 'Embedded Python Block example - a simple multiply const', ['example_param'])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>"""
-Embedded Python Blocks:
-
-Each time this file is saved, GRC will instantiate the first class it finds
-to get ports and parameters of your block. The arguments to __init__  will
-be the parameters. All of them are required to have default values!
-"""
-
-import numpy as np
-from gnuradio import gr
-
-
-class msg_block(gr.basic_block):
-     def __init__(self):
-         gr.basic_block.__init__(
-             self,
-             name="msg_block",
-             in_sig=None,
-             out_sig=None)
- 
-         self.message_port_register_out(pmt.intern('msg_out'))
-         self.message_port_register_in(pmt.intern('msg_in'))
-         self.set_msg_handler(pmt.intern('msg_in'), self.handle_msg)
- 
-     def handle_msg(self, msg):
-         self.message_port_pub(pmt.intern('msg_out'), pmt.intern('message received!'))</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>example_param</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(872, 676)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>epy_block_0</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('Inserir tag', 'clock_reset', [('sps', '1')], [('0', 'float', 1)], [('0', 'float', 1)], 'Embedded Python Block example - a simple multiply const', ['sps'])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>"""
-Embedded Python Blocks:
-
-Each time this file is saved, GRC will instantiate the first class it finds
-to get ports and parameters of your block. The arguments to __init__  will
-be the parameters. All of them are required to have default values!
-"""
-
-import numpy as np
-import pmt
-from gnuradio import gr
-
-
-class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
-    """Embedded Python Block example - a simple multiply const"""
-
-    def __init__(self, sps=1):  # only default arguments here
-        """arguments to this function show up as parameters in GRC"""
-        gr.sync_block.__init__(
-            self,
-            name='Inserir tag',   # will show up in GRC
-            in_sig=[np.float32],
-            out_sig=[np.float32]
-        )
-        # if an attribute with the same name as a parameter is found,
-        # a callback is registered (properties work, too).
-        self.sps = sps
-        self._last_called = 0
-
-    def work(self, input_items, output_items):
-        """example: multiply with constant"""
-        
-        if self.nitems_written(0) - self._last_called &gt; 1000000:
-            key = pmt.intern('clock_est')
-            print("enviandooo")
-            value = pmt.to_pmt((0.1, self.sps))
-            self.add_item_tag(0, self.nitems_written(0), key, value)
-            self._last_called = self.nitems_written(0)
-        output_items[0][:] = input_items[0] * 1.0
-        return len(output_items[0])</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(204, 472)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>270</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>epy_block_1</value>
-    </param>
-    <param>
-      <key>sps</key>
-      <value>sps</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('ht6p20b', 'blk_cod', [('debug', 'True'), ('sps', '0')], [('0', 'byte', 1)], [('0', 'byte', 1)], '', ['sps'])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>"""
-Embedded Python Blocks:
-
-Each this file is saved, GRC will instantiate the first class it finds to get
-ports and parameters of your block. The arguments to __init__  will be the
-parameters. All of them are required to have default values!
-"""
-import numpy as np
-from gnuradio import gr
-
-class blk_cod(gr.basic_block):
-    def __init__(self, debug=True, sps=0):  # only default arguments here
-        gr.basic_block.__init__(
-            self,
-            name="ht6p20b",
-            in_sig=[np.int8],
-            out_sig=[np.int8])
-
-        
-        self.bit1 = np.array([0, 1, 1])
-        self.bit0 = np.array([0, 0, 1])
-        self.sync = np.array([0, 0, 0, 0, 0, 0, 0, 0, 1])
-        self.sps  = sps
-        # self.sync = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-        # self.bit1 = np.array([0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1])
-        # self.bit0 = np.array([0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0])
-        # self.bit2 = np.array([0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0])
-        self.pilot = 0
-        self.buffer_ = []
-
-    def general_work(self, input_items, output_items):
-        size_input = len(input_items[0][:])
-        if len(input_items[0][:]) &lt; 160:
-            return 0
-
-        ### se ativo 
-        if(self.sps):
-            in_stream = input_items[0][:]
-        else:
-            self.consume(0,size_input)
-            return 0         
-        buffer_ = []
-
-        while(True):
-
-            if(len(in_stream) &lt; 3 ):
-                size = len(buffer_)
-                output_items[0] = np.zeros((size),dtype=np.int8)
-                output_items[0][:] = np.array(buffer_)
-                print(output_items[0])
-                self.consume(0,size_input)
-                return len(output_items[0])
-
-            seq3 = in_stream[:9]
-            
-            if np.all(seq3 == self.sync):
-                i=1
-                in_stream = in_stream[9:]
-                buffer_.append(5)
-            else :
-                seq3 = in_stream[:3]
-                in_stream = in_stream[3:]
-                if np.all(seq3 == self.bit0):
-                    buffer_.append(0)
-
-                elif np.all(seq3 == self.bit1):
-                    buffer_.append(1)  
-                    
-
-</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>debug</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1152, 972)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>epy_block_3_0</value>
-    </param>
-    <param>
-      <key>sps</key>
-      <value>minha_var</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('My Replacement2', 'blkht6026', [], [('0', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>import numpy as np
-from gnuradio import gr
-
-class blkht6026(gr.basic_block):
-    def __init__(self):  # only default arguments here
-        gr.basic_block.__init__(
-            self,
-            name='My Replacement2',
-            in_sig=[np.int8],
-            out_sig=[np.int8]
-        )
-        self.replacements = [((0,0,0,0,0,0,0,0,1), 32), ((0,1,1), 48), ((0,0,1), 49)]
-        #self.replacements =[((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 32),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 46),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 49),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 50)]
-
-
-    def general_work(self, input_items, output_items):
-        if(len(input_items[0]) &lt; 300):
-            return 0
-
-        max_length = max([len(before) for before, after in self.replacements] + [0])
-        ii = 0
-        oo = 0
-        buffer_ = []
-        while ii + max_length &lt; len(input_items[0]):
-            for before, after in self.replacements:
-                if np.all(input_items[0][ii : ii + len(before)] == before):
-                    #output_items[0][oo] = after
-                    buffer_.append(after)
-                    ii += len(before)
-
-                    oo += 1
-                    break
-            else:
-                ii += 1
-        output_items[0][:len(buffer_)] = np.array(buffer_)
-        self.consume(0, ii)
-        return oo</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1128, 936)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>epy_block_3_0_0_0</value>
+      <key>threshold</key>
+      <value>0.01</value>
     </param>
   </block>
   <block>
@@ -2213,7 +1881,7 @@ class blkht6026(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(624, 188)</value>
+      <value>(624, 116)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2421,6 +2089,84 @@ class blkht6026(gr.basic_block):
     </param>
   </block>
   <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('Inserir tag', 'clock_reset', [('sps', '1')], [('0', 'float', 1)], [('0', 'float', 1)], 'Embedded Python Block example - a simple multiply const', ['sps'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>"""
+Embedded Python Blocks:
+
+Each time this file is saved, GRC will instantiate the first class it finds
+to get ports and parameters of your block. The arguments to __init__  will
+be the parameters. All of them are required to have default values!
+"""
+
+import numpy as np
+import pmt
+from gnuradio import gr
+
+
+class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
+    """Embedded Python Block example - a simple multiply const"""
+
+    def __init__(self, sps=1):  # only default arguments here
+        """arguments to this function show up as parameters in GRC"""
+        gr.sync_block.__init__(
+            self,
+            name='Inserir tag',   # will show up in GRC
+            in_sig=[np.float32],
+            out_sig=[np.float32]
+        )
+        # if an attribute with the same name as a parameter is found,
+        # a callback is registered (properties work, too).
+        self.sps = sps
+        self._last_called = 0
+
+    def work(self, input_items, output_items):
+        """example: multiply with constant"""
+        
+        if self.nitems_written(0) - self._last_called &gt; 1000000:
+            key = pmt.intern('clock_est')
+            print("enviandooo")
+            value = pmt.to_pmt((0.1, self.sps))
+            self.add_item_tag(0, self.nitems_written(0), key, value)
+            self._last_called = self.nitems_written(0)
+        output_items[0][:] = input_items[0] * 1.0
+        return len(output_items[0])</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(204, 472)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>270</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>insert_tag</value>
+    </param>
+    <param>
+      <key>sps</key>
+      <value>sps</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_probe_signal_x</key>
     <param>
       <key>alias</key>
@@ -2471,7 +2217,7 @@ class blkht6026(gr.basic_block):
     </param>
     <param>
       <key>bw</key>
-      <value>sdr_rate</value>
+      <value>sdr_rate/10</value>
     </param>
     <param>
       <key>alias</key>
@@ -2479,7 +2225,7 @@ class blkht6026(gr.basic_block):
     </param>
     <param>
       <key>fc</key>
-      <value>0</value>
+      <value>299e6</value>
     </param>
     <param>
       <key>comment</key>
@@ -2503,7 +2249,7 @@ class blkht6026(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(264, 108)</value>
+      <value>(272, 116)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -4536,7 +4282,7 @@ class blkht6026(gr.basic_block):
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('Sum', 'summ', [('limiar_db', '10.0')], [('0', 'float', 1)], [], '', ['limiar_db'])</value>
+      <value>('Sum', 'summ', [('limiar_db', '10.0')], [('0', 'float', 1024)], [], '', ['limiar_db'])</value>
     </param>
     <param>
       <key>_source_code</key>
@@ -4552,36 +4298,49 @@ from gnuradio import gr
 
 
 class summ(gr.sync_block):
-    def __init__(self, limiar_db=10.0):  # only default arguments here
+    def __init__(self, limiar_db=10.0,freq_list = (292000000, 299000000, 315000000, 433920000), sample_rate = 1.8e6, len_fft = 1024):  # only default arguments here
         gr.sync_block.__init__(
             self,
-            name='Sum',
-            in_sig=[np.float32],
+            name='Selector',
+            in_sig=[(np.float32,len_fft)],
             out_sig=[],
         )
         self.valor = 0
-        self.list_frq = (292000000, 299000000, 315000000, 433920000)
+        self.list_frq = freq_list
         self.pos = 0
         self.limiar_db = limiar_db
+        self.desvio = 0
+        self.sample_rate = sample_rate
+        self.len_fft = len_fft
 
     def work(self, input_items, output_items):
-        in_stream = input_items[0][:]
-        if len(in_stream) &lt; 1024:
+        in_stream = input_items[0]
+        if len(in_stream) &lt; 8:
             return 0
 
-        self.valor = 10*np.log10(sum(in_stream))
+
+    
+        media = np.mean(in_stream[:10], axis=0)
+        self.valor = 10*np.log10(sum(media))
+        #print self.valor 
+        n = np.argmax(media)
+        self.desvio = ((self.sample_rate/self.len_fft)*n) - 0.9e6
+
+
+        #print "tamanho " + str(len(in_stream))
         # ~print(self.valor)
-        self.consume(0, len(in_stream))
+        self.consume(0, 10)
 
         return 0
 
     def freq_detectada(self):
         if self.valor &gt; self.limiar_db:
-            return self.list_frq[self.pos]
+            return self.list_frq[self.pos] + self.desvio
         else:
             return "So ruido..."
 
     def freq_ativa(self):
+    
         if self.valor &lt; self.limiar_db:
             self.pos += 1
             self.pos %= len(self.list_frq)
@@ -4597,8 +4356,12 @@ class summ(gr.sync_block):
       <value>1</value>
     </param>
     <param>
+      <key>freq_list</key>
+      <value>(292000000, 299000000, 315000000, 433920000)</value>
+    </param>
+    <param>
       <key>_coordinate</key>
-      <value>(1144, 396)</value>
+      <value>(1032, 340)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4609,8 +4372,16 @@ class summ(gr.sync_block):
       <value>sumx</value>
     </param>
     <param>
+      <key>len_fft</key>
+      <value>1024</value>
+    </param>
+    <param>
       <key>limiar_db</key>
       <value>20.0</value>
+    </param>
+    <param>
+      <key>sample_rate</key>
+      <value>1800000.0</value>
     </param>
   </block>
   <block>
@@ -4730,7 +4501,7 @@ class summ(gr.sync_block):
   </block>
   <connection>
     <source_block_id>blocks_add_const_vxx_0</source_block_id>
-    <sink_block_id>epy_block_1</sink_block_id>
+    <sink_block_id>fir_filter_xxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4748,7 +4519,7 @@ class summ(gr.sync_block):
   </connection>
   <connection>
     <source_block_id>blocks_complex_to_mag_squared_0</source_block_id>
-    <sink_block_id>blocks_vector_to_stream_0</sink_block_id>
+    <sink_block_id>sumx</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4771,12 +4542,6 @@ class summ(gr.sync_block):
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_vector_to_stream_0</source_block_id>
-    <sink_block_id>sumx</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>detectorx</source_block_id>
     <sink_block_id>blocks_null_sink_0</sink_block_id>
     <source_key>0</source_key>
@@ -4790,15 +4555,15 @@ class summ(gr.sync_block):
   </connection>
   <connection>
     <source_block_id>digital_symbol_sync_xx_0</source_block_id>
-    <sink_block_id>blocks_null_sink_0_0_0</sink_block_id>
+    <sink_block_id>blocks_float_to_int_0</sink_block_id>
     <source_key>3</source_key>
-    <sink_key>1</sink_key>
+    <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>digital_symbol_sync_xx_0</source_block_id>
-    <sink_block_id>blocks_float_to_int_0</sink_block_id>
+    <sink_block_id>blocks_null_sink_0_0_0</sink_block_id>
     <source_key>2</source_key>
-    <sink_key>0</sink_key>
+    <sink_key>1</sink_key>
   </connection>
   <connection>
     <source_block_id>digital_symbol_sync_xx_0</source_block_id>
@@ -4814,25 +4579,13 @@ class summ(gr.sync_block):
   </connection>
   <connection>
     <source_block_id>divide</source_block_id>
-    <sink_block_id>blocks_add_const_vxx_0_0</sink_block_id>
+    <sink_block_id>blocks_add_const_vxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>divide</source_block_id>
-    <sink_block_id>fir_filter_xxx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>epy_block_1</source_block_id>
-    <sink_block_id>digital_symbol_sync_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>epy_block_1</source_block_id>
-    <sink_block_id>qtgui_time_sink_x_0_1</sink_block_id>
+    <sink_block_id>blocks_add_const_vxx_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4844,7 +4597,7 @@ class summ(gr.sync_block):
   </connection>
   <connection>
     <source_block_id>fir_filter_xxx_0</source_block_id>
-    <sink_block_id>blocks_add_const_vxx_0</sink_block_id>
+    <sink_block_id>insert_tag</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4861,14 +4614,26 @@ class summ(gr.sync_block):
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>rtlsdr_source_0</source_block_id>
-    <sink_block_id>fir_filter_xxx_1</sink_block_id>
+    <source_block_id>fir_filter_xxx_1</source_block_id>
+    <sink_block_id>qtgui_freq_sink_x_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>insert_tag</source_block_id>
+    <sink_block_id>digital_symbol_sync_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>insert_tag</source_block_id>
+    <sink_block_id>qtgui_time_sink_x_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>rtlsdr_source_0</source_block_id>
-    <sink_block_id>qtgui_freq_sink_x_0</sink_block_id>
+    <sink_block_id>fir_filter_xxx_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
