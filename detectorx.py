@@ -16,9 +16,13 @@ class blkfinal(gr.basic_block):
         self.replacementsize = []
         self.packet = []
         self.replacements.append(([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)]))
+        self.replacements.append(([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)]))
         self.replacements.append(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 'P'),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 1),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 0),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 2)]))
+        self.replacementsize.append(12)
         self.replacementsize.append(28)
         self.replacementsize.append(9)
+
+
 
     def retorna_sequencia_detectada(self):
         return self.seq
@@ -87,11 +91,11 @@ class blkfinal(gr.basic_block):
 		for i in range(0,len(self.replacements)):
 			cod = blkfinal.replacement(self,self.replacements[i], in_stream,self.replacementsize[i])
 			if(cod ==12):
-				self.codificador= "HT12E"
+				self.codificador= "HT12E - M1E-N"
 			elif(cod ==28):
 				self.codificador="HT6P20B"
 			elif(cod==9):
-				self.codificador="HT6026"
+				self.codificador="HT6026 - MC145026"
 				
 				
 
