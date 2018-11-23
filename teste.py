@@ -7,6 +7,19 @@ parameters. All of them are required to have default values!
 """
 import numpy as np
 
+def circ():
+    size = 4
+    current_pos = 0
+    vector = np.zeros(size,dtype=int)
+
+
+    while(True):
+        
+        vector[current_pos % size] = current_pos
+        current_pos = current_pos + 1
+        valor = np.diff(vector)
+        valor = np.sum(valor)
+        print(valor)
 
 def general_work(replacements, input_items, tam):
     size = len(input_items)
