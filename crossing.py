@@ -15,7 +15,7 @@ class crossing(gr.basic_block):
     def __init__(self,sample_rate=1.8e6, threshold = 20):  # only default arguments here
         gr.basic_block.__init__(
             self,
-            name='crossing zero',
+            name='Zero Crossing',
             in_sig=[np.float32],
             out_sig=[]
         )
