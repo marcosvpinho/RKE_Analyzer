@@ -37,7 +37,7 @@ class divide(gr.sync_block):
 		out = np.zeros((size),dtype=np.float32)
 		for i in range(0,size):
 
-			out[i]=in_stream[i]/self.maximum
+			out[i]=(in_stream[i]/self.maximum)-0.5
 
 			
 
