@@ -12,7 +12,7 @@ from gnuradio import gr
 
 class crossing(gr.basic_block):
 
-    def __init__(self,sample_rate=1.8e6, threshold = 20):  # only default arguments here
+    def __init__(self,sample_rate=1.0e6, threshold = 20):  # only default arguments here
         gr.basic_block.__init__(
             self,
             name='Zero Crossing',
@@ -23,15 +23,15 @@ class crossing(gr.basic_block):
         self.threshold = threshold
         self.fs = sample_rate
         self.sps = 0
-        self.ativo = 0
         self.flag = False
         self.pos = 0
 
     def general_work(self, input_items, output_items):
-        in_stream = input_items[0][:]
-        if(len(in_stream)<200):
-        	return 0
+        in_stream = input_items[0]
+        if(len(in_stream)<1000):
+            return 0
         ## cruzamentos por zero
+        in_stream = in_stream[:1000]
         zero_crossings = np.where(np.diff(np.signbit(input_items)))
         size = len(zero_crossings[1])
         zeros_ = []
@@ -42,7 +42,7 @@ class crossing(gr.basic_block):
             #pegando apenas diferencas maiores que 5 amostras
             zeros_ativo.append(dif) 
             if dif > self.threshold:
-        	   zeros_.append(dif)
+               zeros_.append(dif)
 
         ## pegando o menor valor
         if (len(zeros_)):
@@ -52,27 +52,21 @@ class crossing(gr.basic_block):
         else:
             self.sps = 0
 
-        if (len(zeros_ativo)):
-            minimo = min(zeros_ativo)
-            valor = 1/(minimo/self.fs)
-            self.ativo = self.fs/valor
-        else:
-            self.ativo = 0
 
-
-        i0 = len(in_stream)
-        self.consume(0, i0)
+        #i0 = len(in_stream)
+        self.consume(0, 1000)
         #output_items[0][:1] = np.array(buffer_)
         return 0
         
     def retorna_sps(self):
-        if(self.sps < 10):
-            return 10
+        if(self.sps < self.threshold):
+            return 5
         else:
             return int(self.sps)
 
-    def ativo(self):
-        if(self.ativo>30):
-            return True
+
+    def retorna_freq(self):
+        if(self.sps > self.threshold):
+            return int(self.fs/self.sps)
         else:
-            return False
+            return 0
