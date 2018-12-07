@@ -26,15 +26,14 @@ class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_b
         # a callback is registered (properties work, too).
         self.sps = sps
         self._last_called = 0
-
+        self.key = pmt.intern('clock_est')
     def work(self, input_items, output_items):
         """example: multiply with constant"""
         
-        if self.nitems_written(0) - self._last_called > 1000000:
-            key = pmt.intern('clock_est')
-            print("enviandooo")
+        if self.nitems_written(0) - self._last_called > 500000:
+            
             value = pmt.to_pmt((0.1, self.sps))
-            self.add_item_tag(0, self.nitems_written(0), key, value)
+            self.add_item_tag(0, self.nitems_written(0), self.key, value)
             self._last_called = self.nitems_written(0)
         output_items[0][:] = input_items[0] * 1.0
         return len(output_items[0])
