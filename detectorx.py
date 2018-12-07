@@ -7,7 +7,7 @@ class blkfinal(gr.basic_block):
             self,
             name='Decoder',
             in_sig=[np.int8],
-            out_sig=[np.int8]
+            out_sig=[]
         )
         self.buffer_ = []
         self.codificador = "Not Detected"
@@ -21,14 +21,25 @@ class blkfinal(gr.basic_block):
         self.replacementsize.append(12)
         self.replacementsize.append(28)
         self.replacementsize.append(9)
+        self.count = 0
+        self.tamanho = 1
 
 
 
     def retorna_sequencia_detectada(self):
-        return self.seq
+		if(self.count>0):
+			return self.seq
+		else:
+			return "..."
+
+        
 
     def retorna_codificador_detectado(self):
         return self.codificador
+
+    def retorna_tam(self):
+        return self.tamanho
+
     def replacement(self,replacements, input_items,tam):
 
 		# print("replacements",replacements)
@@ -57,13 +68,14 @@ class blkfinal(gr.basic_block):
 		size_b = len(buffer_)
 		flag = 0
 		pos = 0
-		seq = np.zeros((tam),dtype=np.int8)
+		seq = []
 		for i in range(0,size_b):
 			if(buffer_[i] == 'P' and flag == 0 ):
 				flag = 1
 
 			elif(buffer_[i]!= 'P' and buffer_[i]!= 'E' and flag ==1):
-				seq[pos] = buffer_[i]
+				#seq[pos] = buffer_[i]
+				seq.append(buffer_[i])
 				pos=pos+1
 				if(pos==tam):
 					flag=2
@@ -74,12 +86,10 @@ class blkfinal(gr.basic_block):
 			else:
 				pos  = 0
 				flag = 0
-				seq  = np.zeros((tam),dtype=np.int8)
+				del seq[:]
 
 
 		return 0
-
-
 
     def general_work(self, input_items, output_items):
 
@@ -92,10 +102,22 @@ class blkfinal(gr.basic_block):
 			cod = blkfinal.replacement(self,self.replacements[i], in_stream,self.replacementsize[i])
 			if(cod ==12):
 				self.codificador= "HT12E - M1E-N"
+				self.tamanho = 12
+				self.count = 100
 			elif(cod ==28):
 				self.codificador="HT6P20B"
+				self.tamanho = 28
+				self.count = 100
 			elif(cod==9):
 				self.codificador="HT6026 - MC145026"
+				self.tamanho = 9
+				self.count = 100
+			else:
+				if(self.count>0):
+					self.count = self.count - 1
+				else:
+					self.codificador="..."
+					self.tamanho = 1
 				
 				
 
