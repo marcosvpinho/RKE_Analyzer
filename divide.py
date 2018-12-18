@@ -12,7 +12,7 @@ class divide(gr.sync_block):
 	def __init__(self, threshold = 0.01):  # only default arguments here
 		gr.sync_block.__init__(
         	self,
-        	name='Threshold',
+        	name='AGC/Squelch',
         	in_sig=[np.float32],
         	out_sig=[np.float32],
         )

@@ -58,5 +58,5 @@ class summ(gr.sync_block):
             self.pos += 1
             self.pos %= len(self.list_frq)
         self.last_valor = self.valor
-        #print(self.list_frq[self.pos], self.valor, self.limiar_db)
+        print(self.list_frq[self.pos], self.valor, self.limiar_db)
         return self.list_frq[self.pos]
