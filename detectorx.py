@@ -10,7 +10,7 @@ class blkfinal(gr.basic_block):
             out_sig=[]
         )
         self.buffer_ = []
-        self.codificador = "Not Detected"
+        self.codificador = "Nao Detectado"
         self.seq = []
         self.replacements = []
         self.replacementsize = []
@@ -94,7 +94,7 @@ class blkfinal(gr.basic_block):
     def general_work(self, input_items, output_items):
 
 		in_stream = input_items[0]
-		if(len(input_items[0]) < 200):
+		if(len(input_items[0]) < 400):
 			return 0
 		cert = []
 

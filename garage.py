@@ -4,7 +4,7 @@
 # GNU Radio Python Flow Graph
 # Title: RKE Analyzer
 # Author: Marcos
-# Generated: Fri Dec  7 18:08:30 2018
+# Generated: Tue Dec 18 19:52:14 2018
 ##################################################
 
 if __name__ == '__main__':
@@ -93,8 +93,8 @@ class garage(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self.sumx = sumx.summ(limiar_db=18, freq_list=freq_list, sample_rate=sdr_rate, len_fft=fft_n)
-        self.crossing = crossing.crossing(sample_rate=samp_rate, threshold=15)
+        self.sumx = sumx.summ(limiar_db=20, freq_list=freq_list, sample_rate=sdr_rate, len_fft=fft_n)
+        self.crossing = crossing.crossing(sample_rate=samp_rate, threshold=5)
         self.tab = Qt.QTabWidget()
         self.tab_widget_0 = Qt.QWidget()
         self.tab_layout_0 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.tab_widget_0)
@@ -114,7 +114,7 @@ class garage(gr.top_block, Qt.QWidget):
                     self.set_sps(val)
                 except AttributeError:
                     pass
-                time.sleep(1.0 / (1))
+                time.sleep(1.0 / (5))
         _sps_thread = threading.Thread(target=_sps_probe)
         _sps_thread.daemon = True
         _sps_thread.start()
@@ -127,7 +127,7 @@ class garage(gr.top_block, Qt.QWidget):
                     self.set_freqdetectada(val)
                 except AttributeError:
                     pass
-                time.sleep(1.0 / (1))
+                time.sleep(1.0 / (5))
         _freqdetectada_thread = threading.Thread(target=_freqdetectada_probe)
         _freqdetectada_thread.daemon = True
         _freqdetectada_thread.start()
@@ -140,7 +140,7 @@ class garage(gr.top_block, Qt.QWidget):
                     self.set_freq(val)
                 except AttributeError:
                     pass
-                time.sleep(1.0 / (1))
+                time.sleep(1.0 / (5))
         _freq_thread = threading.Thread(target=_freq_probe)
         _freq_thread.daemon = True
         _freq_thread.start()
@@ -186,7 +186,7 @@ class garage(gr.top_block, Qt.QWidget):
         else:
           self._variable_qtgui_label_0_0_formatter = lambda x: str(x)
 
-        self._variable_qtgui_label_0_0_tool_bar.addWidget(Qt.QLabel('Taxa de bits'+": "))
+        self._variable_qtgui_label_0_0_tool_bar.addWidget(Qt.QLabel('Frequencia do clock'+": "))
         self._variable_qtgui_label_0_0_label = Qt.QLabel(str(self._variable_qtgui_label_0_0_formatter(self.variable_qtgui_label_0_0)))
         self._variable_qtgui_label_0_0_tool_bar.addWidget(self._variable_qtgui_label_0_0_label)
         self.top_grid_layout.addWidget(self._variable_qtgui_label_0_0_tool_bar)
@@ -208,19 +208,19 @@ class garage(gr.top_block, Qt.QWidget):
         self.rtlsdr_source_0.set_center_freq(freq, 0)
         self.rtlsdr_source_0.set_freq_corr(0, 0)
         self.rtlsdr_source_0.set_dc_offset_mode(0, 0)
-        self.rtlsdr_source_0.set_iq_balance_mode(2, 0)
+        self.rtlsdr_source_0.set_iq_balance_mode(0, 0)
         self.rtlsdr_source_0.set_gain_mode(False, 0)
-        self.rtlsdr_source_0.set_gain(15, 0)
-        self.rtlsdr_source_0.set_if_gain(15, 0)
-        self.rtlsdr_source_0.set_bb_gain(15, 0)
+        self.rtlsdr_source_0.set_gain(20, 0)
+        self.rtlsdr_source_0.set_if_gain(20, 0)
+        self.rtlsdr_source_0.set_bb_gain(20, 0)
         self.rtlsdr_source_0.set_antenna('00', 0)
         self.rtlsdr_source_0.set_bandwidth(0, 0)
 
         self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
-        	512, #size
+        	1024, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
-        	299e6, #fc
-        	samp_rate, #bw
+        	292e6, #fc
+        	sdr_rate, #bw
         	"", #name
         	1 #number of inputs
         )
@@ -259,6 +259,7 @@ class garage(gr.top_block, Qt.QWidget):
 
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
         self.tab_grid_layout_0.addWidget(self._qtgui_freq_sink_x_0_win)
+        self.probe = blocks.probe_signal_i()
 
         def _my_seq_probe():
             while True:
@@ -291,9 +292,11 @@ class garage(gr.top_block, Qt.QWidget):
         self.fir_filter_xxx_0.declare_sample_delay(0)
         self.fft = fft.fft_vcc(fft_n, True, (window.blackmanharris(fft_n)), True, 1)
         self.divide = divide.divide(threshold=0.1)
-        self.digital_symbol_sync_xx_0 = digital.symbol_sync_ff(digital.TED_ZERO_CROSSING, 40, 0.1, 1.0, gain, 30, 1, digital.constellation_bpsk().base(), digital.IR_MMSE_8TAP, 128, ([]))
+        self.digital_symbol_sync_xx_0 = digital.symbol_sync_ff(digital.TED_ZERO_CROSSING, 40, 0.1, 1.0, gain, 35, 1, digital.constellation_bpsk().base(), digital.IR_MMSE_8TAP, 128, ([]))
         self.digital_binary_slicer_fb_0 = digital.binary_slicer_fb()
         self.blocks_stream_to_vector_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, fft_n)
+        self.blocks_null_sink_0_0_0 = blocks.null_sink(gr.sizeof_float*1)
+        self.blocks_float_to_int_0 = blocks.float_to_int(1, 1)
         self.blocks_complex_to_mag_squared_0 = blocks.complex_to_mag_squared(fft_n)
         self.blocks_complex_to_mag_0 = blocks.complex_to_mag(1)
 
@@ -304,8 +307,12 @@ class garage(gr.top_block, Qt.QWidget):
         ##################################################
         self.connect((self.blocks_complex_to_mag_0, 0), (self.divide, 0))
         self.connect((self.blocks_complex_to_mag_squared_0, 0), (self.sumx, 0))
+        self.connect((self.blocks_float_to_int_0, 0), (self.probe, 0))
         self.connect((self.blocks_stream_to_vector_0, 0), (self.fft, 0))
         self.connect((self.digital_binary_slicer_fb_0, 0), (self.detectorx, 0))
+        self.connect((self.digital_symbol_sync_xx_0, 3), (self.blocks_float_to_int_0, 0))
+        self.connect((self.digital_symbol_sync_xx_0, 2), (self.blocks_null_sink_0_0_0, 1))
+        self.connect((self.digital_symbol_sync_xx_0, 1), (self.blocks_null_sink_0_0_0, 0))
         self.connect((self.digital_symbol_sync_xx_0, 0), (self.digital_binary_slicer_fb_0, 0))
         self.connect((self.divide, 0), (self.crossing, 0))
         self.connect((self.divide, 0), (self.fir_filter_xxx_0, 0))
@@ -337,6 +344,7 @@ class garage(gr.top_block, Qt.QWidget):
         self.set_samp_rate(self.sdr_rate / self.decim)
         self.sumx.sample_rate = self.sdr_rate
         self.rtlsdr_source_0.set_sample_rate(self.sdr_rate)
+        self.qtgui_freq_sink_x_0.set_frequency_range(292e6, self.sdr_rate)
 
     def get_my_seq(self):
         return self.my_seq
@@ -408,7 +416,6 @@ class garage(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.qtgui_freq_sink_x_0.set_frequency_range(299e6, self.samp_rate)
 
     def get_gain(self):
         return self.gain
