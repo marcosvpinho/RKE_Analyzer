@@ -4,7 +4,7 @@
 # GNU Radio Python Flow Graph
 # Title: RKE Analyzer
 # Author: Marcos
-# Generated: Tue Dec 18 19:52:14 2018
+# Generated: Thu Dec 20 20:46:26 2018
 ##################################################
 
 if __name__ == '__main__':
@@ -18,6 +18,7 @@ if __name__ == '__main__':
             print "Warning: failed to XInitThreads()"
 
 from PyQt4 import Qt
+from PyQt4.QtCore import QObject, pyqtSlot
 from gnuradio import blocks
 from gnuradio import digital
 from gnuradio import eng_notation
@@ -28,6 +29,7 @@ from gnuradio import qtgui
 from gnuradio.eng_option import eng_option
 from gnuradio.fft import window
 from gnuradio.filter import firdes
+from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
 import crossing
 import detectorx
@@ -78,34 +80,52 @@ class garage(gr.top_block, Qt.QWidget):
         self.my_seq = my_seq = 0
         self.my_encoder = my_encoder = 0
         self.freqdetectada = freqdetectada = 292e6
+        self.freq_list_ = freq_list_ = (292000000, 299000000, 315000000, 434000000)
         self.decim = decim = 20
         self.variable_qtgui_label_0_2 = variable_qtgui_label_0_2 = freqdetectada
         self.variable_qtgui_label_0_1_0 = variable_qtgui_label_0_1_0 = my_seq
         self.variable_qtgui_label_0_1 = variable_qtgui_label_0_1 = my_encoder
         self.variable_qtgui_label_0_0 = variable_qtgui_label_0_0 = sps1
+        self.sps_0 = sps_0 = 0
         self.sps = sps = 44
         self.samp_rate = samp_rate = sdr_rate / decim
         self.gain = gain = 0.01
-        self.freq_list = freq_list = (292000000, 299000000, 315000000, 434000000)
-        self.freq = freq = 292e6
+        self.freq_list = freq_list = freq_list_
+        self.freq_fixa = freq_fixa = 250000000
+        self.freq = freq = 0
         self.fft_n = fft_n = 2048
+        self.encoder_length = encoder_length = ((12,"HT12E - M1E-N"),(28,"HT6P20B"),(9,"HT6026 - MC145026"))
+        self.encoder_code = encoder_code = ((([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)])),(([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)])),(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 'P'),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 1),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 0),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 2)])))
 
         ##################################################
         # Blocks
         ##################################################
-        self.sumx = sumx.summ(limiar_db=20, freq_list=freq_list, sample_rate=sdr_rate, len_fft=fft_n)
+        self._freq_fixa_range = Range(240000000, 470000000, 10000, 250000000, 200)
+        self._freq_fixa_win = RangeWidget(self._freq_fixa_range, self.set_freq_fixa, 'Fixed Frequency', "counter", int)
+        self.top_grid_layout.addWidget(self._freq_fixa_win)
+        self._freq_list_options = (freq_list_, freq_fixa, )
+        self._freq_list_labels = ('Auto Frequency', 'Fixed Frequency', )
+        self._freq_list_group_box = Qt.QGroupBox("freq_list")
+        self._freq_list_box = Qt.QVBoxLayout()
+        class variable_chooser_button_group(Qt.QButtonGroup):
+            def __init__(self, parent=None):
+                Qt.QButtonGroup.__init__(self, parent)
+            @pyqtSlot(int)
+            def updateButtonChecked(self, button_id):
+                self.button(button_id).setChecked(True)
+        self._freq_list_button_group = variable_chooser_button_group()
+        self._freq_list_group_box.setLayout(self._freq_list_box)
+        for i, label in enumerate(self._freq_list_labels):
+        	radio_button = Qt.QRadioButton(label)
+        	self._freq_list_box.addWidget(radio_button)
+        	self._freq_list_button_group.addButton(radio_button, i)
+        self._freq_list_callback = lambda i: Qt.QMetaObject.invokeMethod(self._freq_list_button_group, "updateButtonChecked", Qt.Q_ARG("int", self._freq_list_options.index(i)))
+        self._freq_list_callback(self.freq_list)
+        self._freq_list_button_group.buttonClicked[int].connect(
+        	lambda i: self.set_freq_list(self._freq_list_options[i]))
+        self.top_grid_layout.addWidget(self._freq_list_group_box)
+        self.sumx = sumx.summ(limiar_db=25, freq_list=freq_list, sample_rate=sdr_rate, len_fft=fft_n)
         self.crossing = crossing.crossing(sample_rate=samp_rate, threshold=5)
-        self.tab = Qt.QTabWidget()
-        self.tab_widget_0 = Qt.QWidget()
-        self.tab_layout_0 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.tab_widget_0)
-        self.tab_grid_layout_0 = Qt.QGridLayout()
-        self.tab_layout_0.addLayout(self.tab_grid_layout_0)
-        self.tab.addTab(self.tab_widget_0, 'Tab 0')
-        self.top_grid_layout.addWidget(self.tab, 1, 0, 10, 1)
-        for r in range(1, 11):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(0, 1):
-            self.top_grid_layout.setColumnStretch(c, 1)
 
         def _sps_probe():
             while True:
@@ -145,7 +165,7 @@ class garage(gr.top_block, Qt.QWidget):
         _freq_thread.daemon = True
         _freq_thread.start()
 
-        self.detectorx = detectorx.blkfinal()
+        self.detectorx = detectorx.blkfinal(decoders_list=encoder_code, decoders_length=encoder_length)
         self._variable_qtgui_label_0_2_tool_bar = Qt.QToolBar(self)
 
         if None:
@@ -191,6 +211,19 @@ class garage(gr.top_block, Qt.QWidget):
         self._variable_qtgui_label_0_0_tool_bar.addWidget(self._variable_qtgui_label_0_0_label)
         self.top_grid_layout.addWidget(self._variable_qtgui_label_0_0_tool_bar)
 
+        def _sps_0_probe():
+            while True:
+                val = self.sumx.atualiza_sintonizador(freq_list)
+                try:
+                    self.set_sps_0(val)
+                except AttributeError:
+                    pass
+                time.sleep(1.0 / (1))
+        _sps_0_thread = threading.Thread(target=_sps_0_probe)
+        _sps_0_thread.daemon = True
+        _sps_0_thread.start()
+
+
         def _sps1_probe():
             while True:
                 val = self.crossing.retorna_freq()
@@ -219,7 +252,7 @@ class garage(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
         	1024, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
-        	292e6, #fc
+        	0, #fc
         	sdr_rate, #bw
         	"", #name
         	1 #number of inputs
@@ -258,7 +291,7 @@ class garage(gr.top_block, Qt.QWidget):
             self.qtgui_freq_sink_x_0.set_line_alpha(i, alphas[i])
 
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
-        self.tab_grid_layout_0.addWidget(self._qtgui_freq_sink_x_0_win)
+        self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_0_win)
         self.probe = blocks.probe_signal_i()
 
         def _my_seq_probe():
@@ -344,7 +377,7 @@ class garage(gr.top_block, Qt.QWidget):
         self.set_samp_rate(self.sdr_rate / self.decim)
         self.sumx.sample_rate = self.sdr_rate
         self.rtlsdr_source_0.set_sample_rate(self.sdr_rate)
-        self.qtgui_freq_sink_x_0.set_frequency_range(292e6, self.sdr_rate)
+        self.qtgui_freq_sink_x_0.set_frequency_range(0, self.sdr_rate)
 
     def get_my_seq(self):
         return self.my_seq
@@ -367,6 +400,13 @@ class garage(gr.top_block, Qt.QWidget):
         self.freqdetectada = freqdetectada
         self.set_variable_qtgui_label_0_2(self._variable_qtgui_label_0_2_formatter(self.freqdetectada))
         self.freq_xlating_fir_filter_xxx_0.set_center_freq(self.freqdetectada - self.freq)
+
+    def get_freq_list_(self):
+        return self.freq_list_
+
+    def set_freq_list_(self, freq_list_):
+        self.freq_list_ = freq_list_
+        self.set_freq_list(self.freq_list_)
 
     def get_decim(self):
         return self.decim
@@ -403,6 +443,12 @@ class garage(gr.top_block, Qt.QWidget):
         self.variable_qtgui_label_0_0 = variable_qtgui_label_0_0
         Qt.QMetaObject.invokeMethod(self._variable_qtgui_label_0_0_label, "setText", Qt.Q_ARG("QString", self.variable_qtgui_label_0_0))
 
+    def get_sps_0(self):
+        return self.sps_0
+
+    def set_sps_0(self, sps_0):
+        self.sps_0 = sps_0
+
     def get_sps(self):
         return self.sps
 
@@ -429,6 +475,13 @@ class garage(gr.top_block, Qt.QWidget):
 
     def set_freq_list(self, freq_list):
         self.freq_list = freq_list
+        self._freq_list_callback(self.freq_list)
+
+    def get_freq_fixa(self):
+        return self.freq_fixa
+
+    def set_freq_fixa(self, freq_fixa):
+        self.freq_fixa = freq_fixa
 
     def get_freq(self):
         return self.freq
@@ -444,6 +497,18 @@ class garage(gr.top_block, Qt.QWidget):
     def set_fft_n(self, fft_n):
         self.fft_n = fft_n
         self.sumx.len_fft = self.fft_n
+
+    def get_encoder_length(self):
+        return self.encoder_length
+
+    def set_encoder_length(self, encoder_length):
+        self.encoder_length = encoder_length
+
+    def get_encoder_code(self):
+        return self.encoder_code
+
+    def set_encoder_code(self, encoder_code):
+        self.encoder_code = encoder_code
 
 
 def main(top_block_cls=garage, options=None):
