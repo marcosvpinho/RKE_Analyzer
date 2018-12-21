@@ -10,7 +10,7 @@ from gnuradio import gr
 
 
 class summ(gr.sync_block):
-    def __init__(self, limiar_db=10.0,freq_list = (292000000, 299000000, 315000000, 433920000), sample_rate = 1.0e6, len_fft = 2048):  # only default arguments here
+    def __init__(self, limiar_db=10.0,freq_list = None, sample_rate = 1.0e6, len_fft = 2048):  # only default arguments here
         gr.sync_block.__init__(
             self,
             name='Selector',
@@ -28,6 +28,7 @@ class summ(gr.sync_block):
         self.numero = 0
 
     def work(self, input_items, output_items):
+    	
         in_stream = input_items[0]
         if len(in_stream) < 8:
             return 0
@@ -45,6 +46,9 @@ class summ(gr.sync_block):
         self.consume(0, 8)
 
         return 0
+    def atualiza_sintonizador(self,freq_list):
+    	print(freq_list)
+    	#self.list_frq = freq_list
 
     def freq_detectada(self):
         if self.valor > self.limiar_db or self.last_valor > self.limiar_db:

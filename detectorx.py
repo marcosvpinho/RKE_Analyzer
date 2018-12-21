@@ -2,7 +2,7 @@ import numpy as np
 from gnuradio import gr
 
 class blkfinal(gr.basic_block):
-    def __init__(self):  # only default arguments here
+    def __init__(self,decoders_list = None,decoders_length = None):  # only default arguments here
         gr.basic_block.__init__(
             self,
             name='Decoder',
@@ -15,12 +15,8 @@ class blkfinal(gr.basic_block):
         self.replacements = []
         self.replacementsize = []
         self.packet = []
-        self.replacements.append(([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)]))
-        self.replacements.append(([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)]))
-        self.replacements.append(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 'P'),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 1),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 0),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 2)]))
-        self.replacementsize.append(12)
-        self.replacementsize.append(28)
-        self.replacementsize.append(9)
+        self.replacements = decoders_list
+        self.replacementsize = decoders_length
         self.count = 0
         self.tamanho = 1
 
@@ -99,18 +95,10 @@ class blkfinal(gr.basic_block):
 		cert = []
 
 		for i in range(0,len(self.replacements)):
-			cod = blkfinal.replacement(self,self.replacements[i], in_stream,self.replacementsize[i])
-			if(cod ==12):
-				self.codificador= "HT12E - M1E-N"
-				self.tamanho = 12
-				self.count = 100
-			elif(cod ==28):
-				self.codificador="HT6P20B"
-				self.tamanho = 28
-				self.count = 100
-			elif(cod==9):
-				self.codificador="HT6026 - MC145026"
-				self.tamanho = 9
+			cod = blkfinal.replacement(self,self.replacements[i], in_stream,self.replacementsize[i][0])
+			if(cod ==self.replacementsize[i][0]):
+				self.codificador= self.replacementsize[i][1]
+				self.tamanho = self.replacementsize[i][0]
 				self.count = 100
 			else:
 				if(self.count>0):
@@ -119,16 +107,7 @@ class blkfinal(gr.basic_block):
 					self.codificador="..."
 					self.tamanho = 1
 				
-				
-
-            #print(len(self.buffer_))
-
-            # if(blkfinal.checker(self,self.packet,i)):
-            #     print(blkfinal.retorna_sequencia_detectada(self))
-            #     print(blkfinal.retorna_codificador_detectado(self))
-            #     self.consume(0,len(input_items[0]))
-
-            # else:
+			
 		self.consume(0,len(input_items[0]))
 
 		return 0

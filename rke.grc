@@ -124,6 +124,60 @@
     </param>
     <param>
       <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(712, 596)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>encoder_code</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>((([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)])),(([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)])),(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 'P'),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 1),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 0),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 2)])))</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(496, 652)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>encoder_length</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>((12,"HT12E - M1E-N"),(28,"HT6P20B"),(9,"HT6026 - MC145026"))</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
       <value>1</value>
     </param>
     <param>
@@ -179,11 +233,173 @@
     </param>
     <param>
       <key>value</key>
-      <value>292e6</value>
+      <value>0</value>
     </param>
     <param>
       <key>poll_rate</key>
       <value>5</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_range</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>250000000</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1032, 692)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>freq_fixa</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Fixed Frequency</value>
+    </param>
+    <param>
+      <key>min_len</key>
+      <value>200</value>
+    </param>
+    <param>
+      <key>orient</key>
+      <value>Qt.Horizontal</value>
+    </param>
+    <param>
+      <key>start</key>
+      <value>240000000</value>
+    </param>
+    <param>
+      <key>step</key>
+      <value>10000</value>
+    </param>
+    <param>
+      <key>stop</key>
+      <value>470000000</value>
+    </param>
+    <param>
+      <key>rangeType</key>
+      <value>int</value>
+    </param>
+    <param>
+      <key>widget</key>
+      <value>counter</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_chooser</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>freq_list_</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(928, 548)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>freq_list</value>
+    </param>
+    <param>
+      <key>label0</key>
+      <value>Auto Frequency</value>
+    </param>
+    <param>
+      <key>label1</key>
+      <value>Fixed Frequency</value>
+    </param>
+    <param>
+      <key>label2</key>
+      <value></value>
+    </param>
+    <param>
+      <key>label3</key>
+      <value></value>
+    </param>
+    <param>
+      <key>label4</key>
+      <value></value>
+    </param>
+    <param>
+      <key>label</key>
+      <value></value>
+    </param>
+    <param>
+      <key>labels</key>
+      <value>[]</value>
+    </param>
+    <param>
+      <key>num_opts</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>option0</key>
+      <value>freq_list_</value>
+    </param>
+    <param>
+      <key>option1</key>
+      <value>freq_fixa</value>
+    </param>
+    <param>
+      <key>option2</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>option3</key>
+      <value>3</value>
+    </param>
+    <param>
+      <key>option4</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>options</key>
+      <value>[0, 1, 2]</value>
+    </param>
+    <param>
+      <key>orient</key>
+      <value>Qt.QVBoxLayout</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>raw</value>
+    </param>
+    <param>
+      <key>widget</key>
+      <value>radio_buttons</value>
     </param>
   </block>
   <block>
@@ -206,7 +422,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>freq_list</value>
+      <value>freq_list_</value>
     </param>
     <param>
       <key>value</key>
@@ -503,6 +719,49 @@
     <param>
       <key>value</key>
       <value>1</value>
+    </param>
+    <param>
+      <key>poll_rate</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_function_probe</key>
+    <param>
+      <key>block_id</key>
+      <value>sumx</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>function_args</key>
+      <value>freq_list</value>
+    </param>
+    <param>
+      <key>function_name</key>
+      <value>atualiza_sintonizador</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(608, 732)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>sps_0</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
     </param>
     <param>
       <key>poll_rate</key>
@@ -830,7 +1089,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(792, 124)</value>
+      <value>(896, 124)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -967,7 +1226,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(312, 228)</value>
+      <value>(320, 236)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1094,7 +1353,7 @@ class crossing(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(864, 380)</value>
+      <value>(1000, 228)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1121,7 +1380,7 @@ class crossing(gr.basic_block):
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('Decoder', 'blkfinal', [], [('0', 'byte', 1)], [], '', [])</value>
+      <value>('Decoder', 'blkfinal', [('decoders_list', 'None'), ('decoders_length', 'None')], [('0', 'byte', 1)], [], '', [])</value>
     </param>
     <param>
       <key>_source_code</key>
@@ -1129,7 +1388,7 @@ class crossing(gr.basic_block):
 from gnuradio import gr
 
 class blkfinal(gr.basic_block):
-    def __init__(self):  # only default arguments here
+    def __init__(self,decoders_list = None,decoders_length = None):  # only default arguments here
         gr.basic_block.__init__(
             self,
             name='Decoder',
@@ -1142,12 +1401,8 @@ class blkfinal(gr.basic_block):
         self.replacements = []
         self.replacementsize = []
         self.packet = []
-        self.replacements.append(([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)]))
-        self.replacements.append(([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)]))
-        self.replacements.append(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 'P'),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 1),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 0),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 2)]))
-        self.replacementsize.append(12)
-        self.replacementsize.append(28)
-        self.replacementsize.append(9)
+        self.replacements = decoders_list
+        self.replacementsize = decoders_length
         self.count = 0
         self.tamanho = 1
 
@@ -1226,18 +1481,10 @@ class blkfinal(gr.basic_block):
 		cert = []
 
 		for i in range(0,len(self.replacements)):
-			cod = blkfinal.replacement(self,self.replacements[i], in_stream,self.replacementsize[i])
-			if(cod ==12):
-				self.codificador= "HT12E - M1E-N"
-				self.tamanho = 12
-				self.count = 100
-			elif(cod ==28):
-				self.codificador="HT6P20B"
-				self.tamanho = 28
-				self.count = 100
-			elif(cod==9):
-				self.codificador="HT6026 - MC145026"
-				self.tamanho = 9
+			cod = blkfinal.replacement(self,self.replacements[i], in_stream,self.replacementsize[i][0])
+			if(cod ==self.replacementsize[i][0]):
+				self.codificador= self.replacementsize[i][1]
+				self.tamanho = self.replacementsize[i][0]
 				self.count = 100
 			else:
 				if(self.count&gt;0):
@@ -1246,16 +1493,7 @@ class blkfinal(gr.basic_block):
 					self.codificador="..."
 					self.tamanho = 1
 				
-				
-
-            #print(len(self.buffer_))
-
-            # if(blkfinal.checker(self,self.packet,i)):
-            #     print(blkfinal.retorna_sequencia_detectada(self))
-            #     print(blkfinal.retorna_codificador_detectado(self))
-            #     self.consume(0,len(input_items[0]))
-
-            # else:
+			
 		self.consume(0,len(input_items[0]))
 
 		return 0</value>
@@ -1265,12 +1503,20 @@ class blkfinal(gr.basic_block):
       <value></value>
     </param>
     <param>
+      <key>decoders_length</key>
+      <value>encoder_length</value>
+    </param>
+    <param>
+      <key>decoders_list</key>
+      <value>encoder_code</value>
+    </param>
+    <param>
       <key>_enabled</key>
       <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(48, 544)</value>
+      <value>(24, 548)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1301,7 +1547,7 @@ class blkfinal(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(168, 544)</value>
+      <value>(280, 560)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1482,7 +1728,7 @@ class divide(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(728, 284)</value>
+      <value>(832, 308)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1525,7 +1771,7 @@ class divide(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(496, 188)</value>
+      <value>(656, 92)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1613,61 +1859,6 @@ class divide(gr.sync_block):
     <param>
       <key>type</key>
       <value>fff</value>
-    </param>
-  </block>
-  <block>
-    <key>fir_filter_xxx</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>decim</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(384, 636)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>fir_filter_xxx_1</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>samp_delay</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>taps</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>ccc</value>
     </param>
   </block>
   <block>
@@ -1927,7 +2118,7 @@ class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_b
     </param>
     <param>
       <key>fc</key>
-      <value>292e6</value>
+      <value>0</value>
     </param>
     <param>
       <key>comment</key>
@@ -1951,11 +2142,11 @@ class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_b
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(328, 148)</value>
+      <value>(312, 108)</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value>tab@0</value>
+      <value></value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3617,7 +3808,7 @@ class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_b
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('Selector', 'summ', [('limiar_db', '10.0'), ('freq_list', '(292000000, 299000000, 315000000, 433920000)'), ('sample_rate', '1000000.0'), ('len_fft', '2048')], [('0', 'float', 2048)], [], '', ['len_fft', 'limiar_db', 'sample_rate'])</value>
+      <value>('Selector', 'summ', [('limiar_db', '10.0'), ('freq_list', 'None'), ('sample_rate', '1000000.0'), ('len_fft', '2048')], [('0', 'float', 2048)], [], '', ['len_fft', 'limiar_db', 'sample_rate'])</value>
     </param>
     <param>
       <key>_source_code</key>
@@ -3633,7 +3824,7 @@ from gnuradio import gr
 
 
 class summ(gr.sync_block):
-    def __init__(self, limiar_db=10.0,freq_list = (292000000, 299000000, 315000000, 433920000), sample_rate = 1.0e6, len_fft = 2048):  # only default arguments here
+    def __init__(self, limiar_db=10.0,freq_list = None, sample_rate = 1.0e6, len_fft = 2048):  # only default arguments here
         gr.sync_block.__init__(
             self,
             name='Selector',
@@ -3651,6 +3842,7 @@ class summ(gr.sync_block):
         self.numero = 0
 
     def work(self, input_items, output_items):
+    	
         in_stream = input_items[0]
         if len(in_stream) &lt; 8:
             return 0
@@ -3668,6 +3860,9 @@ class summ(gr.sync_block):
         self.consume(0, 8)
 
         return 0
+    def atualiza_sintonizador(self,freq_list):
+    	print(freq_list)
+    	#self.list_frq = freq_list
 
     def freq_detectada(self):
         if self.valor &gt; self.limiar_db or self.last_valor &gt; self.limiar_db:
@@ -3698,7 +3893,7 @@ class summ(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(992, 100)</value>
+      <value>(1064, 100)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3714,7 +3909,7 @@ class summ(gr.sync_block):
     </param>
     <param>
       <key>limiar_db</key>
-      <value>20</value>
+      <value>25</value>
     </param>
     <param>
       <key>sample_rate</key>
@@ -3733,7 +3928,7 @@ class summ(gr.sync_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
