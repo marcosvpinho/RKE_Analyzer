@@ -1,8 +1,12 @@
 # RKE Analyzer
 
-RKE analyzer é um analisador de controle remoto que utiliza um dongle RTL-SDR. Ele possuirá as seguintes funcionalidades:
+RKE analyzer is a remote control analyzer that is developed on the GNU Radio platform.
+The analyzer automatically provide information about:
 
-*  Detectar a frequência de operação
-*  Identificar o codificador utilizado pelo controle remoto
-*  Descobrir a sequência de transmissão
-*  Medir a taxa de transferência 
+* The operating frequency.
+* The clock frequency.
+* The transmitted data sequence. 
+* The utilized encoder of the remote control.
+
+
+
