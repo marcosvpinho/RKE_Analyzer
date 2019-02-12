@@ -14,7 +14,7 @@ from gnuradio import gr
 class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
     """Embedded Python Block example - a simple multiply const"""
 
-    def __init__(self, sps =5):  # only default arguments here
+    def __init__(self, sps = 40):  # only default arguments here
         """arguments to this function show up as parameters in GRC"""
         gr.sync_block.__init__(
             self,
@@ -30,7 +30,7 @@ class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_b
     def work(self, input_items, output_items):
         """example: multiply with constant"""
         
-        if self.nitems_written(0) - self._last_called > 10000:
+        if self.nitems_written(0) - self._last_called > 5000:
             
             value = pmt.to_pmt((0.1, self.sps))
             self.add_item_tag(0, self.nitems_written(0), self.key, value)

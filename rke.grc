@@ -30,7 +30,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 8)</value>
+      <value>(1016, 204)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -101,7 +101,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(344, 13)</value>
+      <value>(736, 748)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -128,7 +128,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(712, 596)</value>
+      <value>(512, 748)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -140,7 +140,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>((([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)])),(([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)])),(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 'P'),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 1),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 0),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), 2)])))</value>
+      <value>((([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)])),(([((0,0,0,0,0,0,0,1), 'P'), ((0,1,1), 0), ((0,0,1), 1)])),(([((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 'P'),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1), 1),((0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0), 0),((0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0), "Z")])))</value>
     </param>
   </block>
   <block>
@@ -155,7 +155,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(496, 652)</value>
+      <value>(344, 748)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -182,7 +182,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(512, 12)</value>
+      <value>(896, 684)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -221,7 +221,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(816, 924)</value>
+      <value>(712, 540)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -252,11 +252,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1032, 692)</value>
+      <value>(1104, 524)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -315,11 +315,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(928, 548)</value>
+      <value>(1080, 372)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -414,7 +414,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(72, 628)</value>
+      <value>(160, 748)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -422,7 +422,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>freq_list_</value>
+      <value>freq_list</value>
     </param>
     <param>
       <key>value</key>
@@ -453,7 +453,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(592, 836)</value>
+      <value>(344, 652)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -484,7 +484,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(752, 4)</value>
+      <value>(808, 748)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -523,7 +523,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(224, 732)</value>
+      <value>(160, 652)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -566,7 +566,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(224, 836)</value>
+      <value>(344, 556)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -597,7 +597,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(416, 13)</value>
+      <value>(888, 748)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -624,7 +624,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(256, 13)</value>
+      <value>(656, 748)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -663,7 +663,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(816, 828)</value>
+      <value>(536, 556)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -706,7 +706,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(224, 932)</value>
+      <value>(536, 652)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -719,49 +719,6 @@
     <param>
       <key>value</key>
       <value>1</value>
-    </param>
-    <param>
-      <key>poll_rate</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_function_probe</key>
-    <param>
-      <key>block_id</key>
-      <value>sumx</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>function_args</key>
-      <value>freq_list</value>
-    </param>
-    <param>
-      <key>function_name</key>
-      <value>atualiza_sintonizador</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(608, 732)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>sps_0</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>0</value>
     </param>
     <param>
       <key>poll_rate</key>
@@ -788,7 +745,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(448, 956)</value>
+      <value>(1128, 700)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -831,7 +788,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(56, 932)</value>
+      <value>(0, 732)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -874,7 +831,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(56, 732)</value>
+      <value>(0, 572)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -917,7 +874,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(56, 836)</value>
+      <value>(0, 652)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -960,7 +917,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(416, 836)</value>
+      <value>(160, 572)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1003,7 +960,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(992, 932)</value>
+      <value>(1112, 652)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1046,7 +1003,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(544, 312)</value>
+      <value>(456, 232)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1089,7 +1046,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(896, 124)</value>
+      <value>(600, 28)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1132,7 +1089,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(192, 444)</value>
+      <value>(232, 316)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1179,11 +1136,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>True</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(288, 480)</value>
+      <value>(240, 376)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1191,7 +1148,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>blocks_null_sink_0_0_0</value>
+      <value>blocks_null_sink_0</value>
     </param>
     <param>
       <key>type</key>
@@ -1226,7 +1183,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(320, 236)</value>
+      <value>(208, 116)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1353,7 +1310,7 @@ class crossing(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1000, 228)</value>
+      <value>(816, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1369,7 +1326,7 @@ class crossing(gr.basic_block):
     </param>
     <param>
       <key>threshold</key>
-      <value>5</value>
+      <value>10</value>
     </param>
   </block>
   <block>
@@ -1516,7 +1473,7 @@ class blkfinal(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(24, 548)</value>
+      <value>(8, 452)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1547,7 +1504,7 @@ class blkfinal(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(280, 560)</value>
+      <value>(224, 464)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1598,7 +1555,7 @@ class blkfinal(gr.basic_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(424, 436)</value>
+      <value>(392, 332)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1661,7 +1618,7 @@ class blkfinal(gr.basic_block):
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('Threshold', 'divide', [('threshold', '0.01')], [('0', 'float', 1)], [('0', 'float', 1)], '', ['threshold'])</value>
+      <value>('Level Control/Squelch', 'divide', [('threshold', '0.01')], [('0', 'float', 1)], [('0', 'float', 1)], '', ['threshold'])</value>
     </param>
     <param>
       <key>_source_code</key>
@@ -1679,7 +1636,7 @@ class divide(gr.sync_block):
 	def __init__(self, threshold = 0.01):  # only default arguments here
 		gr.sync_block.__init__(
         	self,
-        	name='AGC/Squelch',
+        	name='Level_Control/Squelch',
         	in_sig=[np.float32],
         	out_sig=[np.float32],
         )
@@ -1728,7 +1685,7 @@ class divide(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(832, 308)</value>
+      <value>(608, 228)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1771,7 +1728,7 @@ class divide(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(656, 92)</value>
+      <value>(360, 84)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1830,11 +1787,11 @@ class divide(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(904, 484)</value>
+      <value>(868, 288)</value>
     </param>
     <param>
       <key>_rotation</key>
-      <value>180</value>
+      <value>270</value>
     </param>
     <param>
       <key>id</key>
@@ -1889,7 +1846,7 @@ class divide(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(312, 340)</value>
+      <value>(232, 204)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1936,7 +1893,7 @@ class divide(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(176, 12)</value>
+      <value>(896, 636)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1952,37 +1909,6 @@ class divide(gr.sync_block):
     </param>
   </block>
   <block>
-    <key>import</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(176, 60)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>import_0_0</value>
-    </param>
-    <param>
-      <key>import</key>
-      <value>import numpy as np</value>
-    </param>
-  </block>
-  <block>
     <key>epy_block</key>
     <param>
       <key>alias</key>
@@ -1990,7 +1916,7 @@ class divide(gr.sync_block):
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('Send tag', 'clock_reset', [('sps', '1')], [('0', 'float', 1)], [('0', 'float', 1)], 'Embedded Python Block example - a simple multiply const', ['sps'])</value>
+      <value>('Send tag', 'clock_reset', [('sps', '40')], [('0', 'float', 1)], [('0', 'float', 1)], 'Embedded Python Block example - a simple multiply const', ['sps'])</value>
     </param>
     <param>
       <key>_source_code</key>
@@ -2010,7 +1936,7 @@ from gnuradio import gr
 class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
     """Embedded Python Block example - a simple multiply const"""
 
-    def __init__(self, sps =5):  # only default arguments here
+    def __init__(self, sps = 40):  # only default arguments here
         """arguments to this function show up as parameters in GRC"""
         gr.sync_block.__init__(
             self,
@@ -2026,7 +1952,7 @@ class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_b
     def work(self, input_items, output_items):
         """example: multiply with constant"""
         
-        if self.nitems_written(0) - self._last_called &gt; 10000:
+        if self.nitems_written(0) - self._last_called &gt; 5000:
             
             value = pmt.to_pmt((0.1, self.sps))
             self.add_item_tag(0, self.nitems_written(0), self.key, value)
@@ -2044,7 +1970,7 @@ class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_b
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(728, 492)</value>
+      <value>(696, 396)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2079,7 +2005,7 @@ class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_b
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 448)</value>
+      <value>(80, 320)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2142,7 +2068,7 @@ class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_b
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(312, 108)</value>
+      <value>(232, 4)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2162,7 +2088,7 @@ class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_b
     </param>
     <param>
       <key>legend</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>alpha1</key>
@@ -3697,7 +3623,7 @@ class clock_reset(gr.sync_block):  # other base classes are basic_block, decim_b
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 220)</value>
+      <value>(8, 44)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3893,7 +3819,7 @@ class summ(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1064, 100)</value>
+      <value>(768, 4)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3932,7 +3858,7 @@ class summ(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(616, 12)</value>
+      <value>(1080, 76)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -4069,13 +3995,13 @@ class summ(gr.sync_block):
   </connection>
   <connection>
     <source_block_id>digital_symbol_sync_xx_0</source_block_id>
-    <sink_block_id>blocks_null_sink_0_0_0</sink_block_id>
+    <sink_block_id>blocks_null_sink_0</sink_block_id>
     <source_key>2</source_key>
     <sink_key>1</sink_key>
   </connection>
   <connection>
     <source_block_id>digital_symbol_sync_xx_0</source_block_id>
-    <sink_block_id>blocks_null_sink_0_0_0</sink_block_id>
+    <sink_block_id>blocks_null_sink_0</sink_block_id>
     <source_key>1</source_key>
     <sink_key>0</sink_key>
   </connection>
