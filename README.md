@@ -9,4 +9,6 @@ The analyzer automatically provide information about:
 * The utilized encoder of the remote control.
 
 
+![alt text](https://raw.githubusercontent.com/marcosvpinho/RKE_Analyzer/master/images/ht6026_result.png)
+![alt text](https://raw.githubusercontent.com/marcosvpinho/RKE_Analyzer/master/images/ht6p20b_result.png)
 
