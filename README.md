@@ -10,5 +10,5 @@ The analyzer automatically provide information about:
 
 
 ![alt text](https://raw.githubusercontent.com/marcosvpinho/RKE_Analyzer/master/images/ht6026_result.png)
-![alt text](https://raw.githubusercontent.com/marcosvpinho/RKE_Analyzer/master/images/ht6p20b_result.png)
+![alt text](https://raw.githubusercontent.com/marcosvpinho/RKE_Analyzer/master/images/ht6p20b.png)
 
